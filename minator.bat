@@ -132,10 +132,26 @@ if %LANG_BG%==1 (
 
 set DEVICE=
 for /f "skip=1 tokens=1,2" %%a in ('adb devices') do (
-    if "%%b"=="device" set DEVICE=%%a
+    if "%%b"=="device" if not defined DEVICE set DEVICE=%%a
+)
+
+set UNAUTH=
+for /f "skip=1 tokens=1,2" %%a in ('adb devices') do (
+    if "%%b"=="unauthorized" if not defined UNAUTH set UNAUTH=%%a
 )
 
 if not defined DEVICE (
+    if defined UNAUTH (
+        if %LANG_BG%==1 (
+            echo [!] Устройство намерено но НЕ Е оторизирано!
+            echo     Моля натисни [Allow] на телефона и опитай отново.
+        ) else (
+            echo [!] Device found but NOT authorized!
+            echo     Please tap [Allow] on your phone and try again.
+        )
+        pause
+        exit /b
+    )
     if %LANG_BG%==1 (
         echo [!] Няма свързано устройство!
         echo.

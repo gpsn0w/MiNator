@@ -166,7 +166,14 @@ echo ""
 # Check device
 t '[*] Looking for connected device...' '[*] Търся свързано устройство...'
 device_line=$(adb devices | grep -v "List" | grep "device$" | head -1)
+unauth_line=$(adb devices | grep -v "List" | grep "unauthorized" | head -1)
 DEVICE_SERIAL=$(echo "$device_line" | awk '{print $1}')
+
+if [ -z "$device_line" ] && [ -n "$unauth_line" ]; then
+    t '[!] Device found but NOT authorized!' '[!] Устройство намерено но НЕ Е оторизирано!'
+    t '    Please tap [Allow] on your phone and try again.' '    Моля натисни [Allow] на телефона и опитай отново.'
+    exit 1
+fi
 
 if [ -z "$device_line" ]; then
     t '[!] No device found!' '[!] Няма свързано устройство!'
