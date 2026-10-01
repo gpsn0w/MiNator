@@ -9,7 +9,7 @@ set LANG_BG=0
 cls
 echo  __  __ _ _   _       _
 echo ^|  \/  (_) \ ^| ^| __ _^| ^|_ ___  _ __
-echo ^| ^|\/^| ^| ^|  \^| ^|/ _` ^| __/ _ \^| '^|
+echo ^| ^|\/^| ^| ^|  \^| ^|/ _`  ^| __/ _ \^| '__^|
 echo ^| ^|  ^| ^| ^| ^|^\  ^| (_^| ^| ^|^| (_) ^| ^|
 echo ^|_^|  ^|_^|_^|_^| \_^|\__,_^\__\___/^|_^|
 echo.
@@ -193,7 +193,6 @@ if %LANG_BG%==1 (
 if /i "!ans1!"=="y" (
     call :remove_pkg "com.miui.analytics" "" "Mi Analytics - tracks everything you do and sends it to Xiaomi 🕵️" "Mi Analytics - следи всичко и го праща на Xiaomi 🕵️"
     call :remove_pkg "com.miui.msa" "" "Mi Service Framework - injects ads directly into your system 📢" "Mi Service Framework - вкарва реклами директно в системата 📢"
-    call :remove_pkg "com.xiaomi.mipicks" "com.miui.mipicks" "Mi Picks - spam ads you never asked for 🗑️" "Mi Picks - spam реклами, които никой не е искал 🗑️"
     call :remove_pkg "com.miui.systemAdSolution" "" "System Ad Solution - literally has 'ads' in the name 😂" "System Ad Solution - буквално има 'реклами' в името 😂"
 ) else (
     if %LANG_BG%==1 (echo   -^> Пропуснато.) else (echo   -^> Skipped.)

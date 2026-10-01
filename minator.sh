@@ -115,7 +115,7 @@ remove_pkg() {
     local alt="$2"
     local desc_en="$3"
     local desc_bg="$4"
-    local desc
+    local desc result result2
 
     if [ "$LANG_BG" = true ]; then desc="$desc_bg"; else desc="$desc_en"; fi
 
@@ -208,9 +208,6 @@ if ask_yn "$(t '[?] Remove Ads & Analytics? (spyware, sends your data to Xiaomi)
     remove_pkg "com.miui.msa" "" \
         "Mi Service Framework - injects ads directly into your system 📢" \
         "Mi Service Framework - вкарва реклами директно в системата 📢"
-    remove_pkg "com.xiaomi.mipicks" "com.miui.mipicks" \
-        "Mi Picks - spam ads you never asked for 🗑️" \
-        "Mi Picks - spam реклами, които никой не е искал 🗑️"
     remove_pkg "com.miui.systemAdSolution" "" \
         "System Ad Solution - literally has 'ads' in the name 😂" \
         "System Ad Solution - буквално има 'реклами' в името 😂"
