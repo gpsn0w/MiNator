@@ -18,6 +18,8 @@
 
 ## EN
 
+> **Keep Privacy First**
+
 MiNator removes pre-installed bloatware from Xiaomi/Redmi devices running MIUI or HyperOS.
 No root required — uses ADB.
 
@@ -42,6 +44,8 @@ No root required — uses ADB.
 ---
 
 ## БГ
+
+> **Keep Privacy First**
 
 MiNator маха предварително инсталирания bloatware от Xiaomi/Redmi устройства с MIUI или HyperOS.
 Не е нужен root — използва ADB.
