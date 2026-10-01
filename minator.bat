@@ -13,7 +13,7 @@ echo ^| ^|\/^| ^| ^|  \^| ^|/ _` ^| __/ _ \^| '^|
 echo ^| ^|  ^| ^| ^| ^|^\  ^| (_^| ^| ^|^| (_) ^| ^|
 echo ^|_^|  ^|_^|_^|_^| \_^|\__,_^\__\___/^|_^|
 echo.
-echo       [ Xiaomi Bloat Eliminator ]
+echo     [ Xiaomi Bloat Eliminator ] v1.0
 echo        Made by gpsn0w ^& Claude
 echo           Keep Privacy First
 echo ================================================

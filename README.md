@@ -1,4 +1,4 @@
-# MiNator - Xiaomi Bloat Eliminator
+# MiNator v1.0 - Xiaomi Bloat Eliminator
 
 ```
  __  __ _ _   _       _            
@@ -7,7 +7,7 @@
 | |  | | | |\  | (_| | || (_) | |  
 |_|  |_|_|_| \_|\__,_|\__\___/|_|  
 
-      [ Xiaomi Bloat Eliminator ]
+    [ Xiaomi Bloat Eliminator ] v1.0
        Made by gpsn0w & Claude
           Keep Privacy First
 ```
