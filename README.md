@@ -9,6 +9,7 @@
 
       [ Xiaomi Bloat Eliminator ]
        Made by gpsn0w & Claude
+          Keep Privacy First
 ```
 
 **Tested on: Xiaomi 14 — HyperOS 3.0** ✓

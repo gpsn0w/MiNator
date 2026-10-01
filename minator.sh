@@ -22,6 +22,7 @@ show_banner() {
     echo ""
     echo "      [ Xiaomi Bloat Eliminator ]"
     echo "       Made by gpsn0w & Claude"
+    echo "          Keep Privacy First"
     echo "================================================"
     echo ""
 }

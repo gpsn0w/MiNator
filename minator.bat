@@ -15,6 +15,7 @@ echo ^|_^|  ^|_^|_^|_^| \_^|\__,_^\__\___/^|_^|
 echo.
 echo       [ Xiaomi Bloat Eliminator ]
 echo        Made by gpsn0w ^& Claude
+echo           Keep Privacy First
 echo ================================================
 echo.
 rem Instructions shown after language selection - see :SHOW_INSTRUCTIONS
