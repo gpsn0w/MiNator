@@ -75,7 +75,7 @@ show_instructions() {
         echo ""
     else
         echo ""
-        echo "$(t 'Please set up ADB first, then run MiNator again.' 'Настрой ADB първо, след това пусни MiNator отново.')"
+        t 'Please set up ADB first, then run MiNator again.' 'Настрой ADB първо, след това пусни MiNator отново.'
         exit 0
     fi
 }
@@ -85,7 +85,7 @@ select_language() {
     echo "  [1] English (default)"
     echo "  [2] Български"
     echo ""
-    read -p "Choice / Избор [1/2]: " lang_choice
+    read -r -p "Choice / Избор [1/2]: " lang_choice
     if [ "$lang_choice" = "2" ]; then
         LANG_BG=true
     fi
@@ -103,7 +103,7 @@ t() {
 ask_yn() {
     local question="$1"
     local answer
-    read -p "$question [y/N]: " answer
+    read -r -p "$question [y/N]: " answer
     case "$answer" in
         [yY]|[yY][eE][sS]|[дД]|[дД][аА]) return 0 ;;
         *) return 1 ;;
@@ -132,7 +132,7 @@ remove_pkg() {
     if echo "$result" | grep -q "Success"; then
         echo "✓ $(t 'Removed!' 'Премахнат!')"
     elif [ -n "$alt" ]; then
-        echo "$(t 'not found, trying alt...' 'не е намерен, опитвам алтернатива...')"
+        t 'not found, trying alt...' 'не е намерен, опитвам алтернатива...'
         printf "     "
         result2=$(adb -s "$DEVICE_SERIAL" shell pm uninstall -k --user 0 "$alt" 2>&1)
         if echo "$result2" | grep -q "Success"; then
@@ -152,26 +152,26 @@ select_language
 show_instructions
 
 # Check ADB
-echo "$(t '[*] Checking ADB...' '[*] Проверявам ADB...')"
+t '[*] Checking ADB...' '[*] Проверявам ADB...'
 if ! command -v adb &> /dev/null; then
-    echo "$(t '[!] ADB not found! Install it:' '[!] ADB не е намерен! Инсталирай го:')"
+    t '[!] ADB not found! Install it:' '[!] ADB не е намерен! Инсталирай го:'
     echo "    Mac:    brew install android-platform-tools"
     echo "    Ubuntu/Debian: sudo apt install adb"
     echo "    Fedora: sudo dnf install android-tools"
     exit 1
 fi
-echo "$(t '[+] ADB found!' '[+] ADB намерен!')"
+t '[+] ADB found!' '[+] ADB намерен!'
 echo ""
 
 # Check device
-echo "$(t '[*] Looking for connected device...' '[*] Търся свързано устройство...')"
+t '[*] Looking for connected device...' '[*] Търся свързано устройство...'
 device_line=$(adb devices | grep -v "List" | grep "device$" | head -1)
 DEVICE_SERIAL=$(echo "$device_line" | awk '{print $1}')
 
 if [ -z "$device_line" ]; then
-    echo "$(t '[!] No device found!' '[!] Няма свързано устройство!')"
+    t '[!] No device found!' '[!] Няма свързано устройство!'
     echo ""
-    echo "$(t 'How to connect:' 'Как да се свържеш:')"
+    t 'How to connect:' 'Как да се свържеш:'
     echo "  1. $(t 'Enable USB Debugging:' 'Включи USB Debugging:')"
     echo "     $(t 'Settings → About phone → tap Build number 7 times → Developer Options → USB Debugging' 'Настройки → За телефона → натисни Build number 7 пъти → Developer Options → USB Debugging')"
     echo "  2. $(t 'Connect with USB cable' 'Свържи с USB кабел')"
@@ -194,7 +194,7 @@ else
     os_type="Unknown OS"
 fi
 
-echo "$(t "[+] Device found: $device_model ($os_type)" "[+] Устройство намерено: $device_model ($os_type)")"
+t "[+] Device found: $device_model ($os_type)" "[+] Устройство намерено: $device_model ($os_type)"
 echo ""
 echo "================================================"
 echo ""
@@ -316,12 +316,12 @@ echo ""
 # ================================================================
 # CATEGORY 4: MI CLOUD (DOUBLE CONFIRMATION - FIND MY WARNING)
 # ================================================================
-echo "$(t '[!] WARNING: Mi Cloud is connected to Find My Device!' '[!] ВНИМАНИЕ: Mi Cloud е свързан с Find My Device!')"
+t '[!] WARNING: Mi Cloud is connected to Find My Device!' '[!] ВНИМАНИЕ: Mi Cloud е свързан с Find My Device!'
 echo ""
 if ask_yn "$(t '[?] Remove Mi Cloud Backup? (backup to Chinese servers, may affect Find My Device)' '[?] Маха Mi Cloud Backup? (бекъп в китайски сървъри, може да засегне Find My Device)')"; then
     echo ""
-    echo "$(t '[!!] SECOND CONFIRMATION REQUIRED!' '[!!] НУЖНО Е ВТОРО ПОТВЪРЖДЕНИЕ!')"
-    echo "$(t '[!!] Find My Device may STOP working if you proceed!' '[!!] Find My Device може да СПРЕ да работи!')"
+    t '[!!] SECOND CONFIRMATION REQUIRED!' '[!!] НУЖНО Е ВТОРО ПОТВЪРЖДЕНИЕ!'
+    t '[!!] Find My Device may STOP working if you proceed!' '[!!] Find My Device може да СПРЕ да работи!'
     echo ""
     if ask_yn "$(t '[?] Are you 100% sure? Confirm removal of Mi Cloud Backup?' '[?] 100% сигурен ли си? Потвърди махането на Mi Cloud Backup?')"; then
         remove_pkg "com.miui.cloudbackup" "" \
@@ -337,5 +337,5 @@ echo ""
 
 # ================================================================
 echo "================================================"
-echo "$(t '[+] MiNator done! Please RESTART your phone.' '[+] MiNator приключи! Моля РЕСТАРТИРАЙ телефона.')"
+t '[+] MiNator done! Please RESTART your phone.' '[+] MiNator приключи! Моля РЕСТАРТИРАЙ телефона.'
 echo "================================================"
