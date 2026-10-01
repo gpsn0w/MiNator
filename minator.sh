@@ -127,14 +127,14 @@ remove_pkg() {
     echo "     $desc"
     printf "     "
 
-    result=$(adb shell pm uninstall -k --user 0 "$pkg" 2>&1)
+    result=$(adb -s "$DEVICE_SERIAL" shell pm uninstall -k --user 0 "$pkg" 2>&1)
 
     if echo "$result" | grep -q "Success"; then
         echo "✓ $(t 'Removed!' 'Премахнат!')"
     elif [ -n "$alt" ]; then
         echo "$(t 'not found, trying alt...' 'не е намерен, опитвам алтернатива...')"
         printf "     "
-        result2=$(adb shell pm uninstall -k --user 0 "$alt" 2>&1)
+        result2=$(adb -s "$DEVICE_SERIAL" shell pm uninstall -k --user 0 "$alt" 2>&1)
         if echo "$result2" | grep -q "Success"; then
             echo "✓ $(t 'Removed!' 'Премахнат!')"
         else
@@ -166,6 +166,7 @@ echo ""
 # Check device
 echo "$(t '[*] Looking for connected device...' '[*] Търся свързано устройство...')"
 device_line=$(adb devices | grep -v "List" | grep "device$" | head -1)
+DEVICE_SERIAL=$(echo "$device_line" | awk '{print $1}')
 
 if [ -z "$device_line" ]; then
     echo "$(t '[!] No device found!' '[!] Няма свързано устройство!')"
@@ -178,12 +179,12 @@ if [ -z "$device_line" ]; then
     exit 1
 fi
 
-device_model=$(adb shell getprop ro.product.marketname 2>/dev/null | tr -d '\r')
+device_model=$(adb -s "$DEVICE_SERIAL" shell getprop ro.product.marketname 2>/dev/null | tr -d '\r')
 if [ -z "$device_model" ]; then
-    device_model=$(adb shell getprop ro.product.model 2>/dev/null | tr -d '\r')
+    device_model=$(adb -s "$DEVICE_SERIAL" shell getprop ro.product.model 2>/dev/null | tr -d '\r')
 fi
-hyperos_version=$(adb shell getprop ro.mi.os.version.name 2>/dev/null | tr -d '\r')
-miui_version=$(adb shell getprop ro.miui.ui.version.name 2>/dev/null | tr -d '\r')
+hyperos_version=$(adb -s "$DEVICE_SERIAL" shell getprop ro.mi.os.version.name 2>/dev/null | tr -d '\r')
+miui_version=$(adb -s "$DEVICE_SERIAL" shell getprop ro.miui.ui.version.name 2>/dev/null | tr -d '\r')
 
 if [ -n "$hyperos_version" ]; then
     os_type="HyperOS $hyperos_version"

@@ -158,12 +158,12 @@ if not defined DEVICE (
     exit /b
 )
 
-for /f "delims=" %%a in ('adb shell getprop ro.product.marketname 2^>nul') do set MODEL=%%a
+for /f "delims=" %%a in ('adb -s %DEVICE% shell getprop ro.product.marketname 2^>nul') do set MODEL=%%a
 if not defined MODEL (
-    for /f "delims=" %%a in ('adb shell getprop ro.product.model 2^>nul') do set MODEL=%%a
+    for /f "delims=" %%a in ('adb -s %DEVICE% shell getprop ro.product.model 2^>nul') do set MODEL=%%a
 )
-for /f "delims=" %%a in ('adb shell getprop ro.mi.os.version.name 2^>nul') do set HYPEROS=%%a
-for /f "delims=" %%a in ('adb shell getprop ro.miui.ui.version.name 2^>nul') do set MIUI=%%a
+for /f "delims=" %%a in ('adb -s %DEVICE% shell getprop ro.mi.os.version.name 2^>nul') do set HYPEROS=%%a
+for /f "delims=" %%a in ('adb -s %DEVICE% shell getprop ro.miui.ui.version.name 2^>nul') do set MIUI=%%a
 
 if defined HYPEROS (
     set OS_TYPE=HyperOS %HYPEROS%
@@ -365,7 +365,7 @@ if %LANG_BG%==1 (
     echo      %DESC_EN%
 )
 <nul set /p "     "
-adb shell pm uninstall -k --user 0 %PKG% > "%RESULT_FILE%" 2>&1
+adb -s %DEVICE% shell pm uninstall -k --user 0 %PKG% > "%RESULT_FILE%" 2>&1
 findstr /c:"Success" "%RESULT_FILE%" > nul
 if not errorlevel 1 (
     if %LANG_BG%==1 (echo OK - Премахнат!) else (echo OK - Removed!)
@@ -375,7 +375,7 @@ if not errorlevel 1 (
 if not "%ALT%"=="" (
     if %LANG_BG%==1 (echo не е намерен, опитвам алтернатива...) else (echo not found, trying alt...)
     <nul set /p "     "
-    adb shell pm uninstall -k --user 0 %ALT% > "%RESULT_FILE%" 2>&1
+    adb -s %DEVICE% shell pm uninstall -k --user 0 %ALT% > "%RESULT_FILE%" 2>&1
     findstr /c:"Success" "%RESULT_FILE%" > nul
     if not errorlevel 1 (
         if %LANG_BG%==1 (echo OK - Премахнат!) else (echo OK - Removed!)
