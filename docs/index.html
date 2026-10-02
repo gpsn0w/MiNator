@@ -144,6 +144,27 @@
     body.en .inline-lang.en { display: inline; }
     body.bg .inline-lang.bg { display: inline; }
 
+    /* FOOTER */
+    .site-footer {
+      text-align: center;
+      padding: 24px;
+      margin-top: 48px;
+      border-top: 1px solid #0d2a0d;
+    }
+    .footer-line {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 12px; flex-wrap: wrap; justify-content: center;
+    }
+    .footer-bracket { color: var(--green); font-size: 14px; }
+    .footer-brand { color: var(--green); font-weight: bold; font-size: 13px; }
+    .footer-brand:hover { opacity: .8; }
+    .footer-sep { color: #1e3a1e; }
+    .footer-copy { color: #333; }
+    .footer-author { color: #4a6a4a; transition: color .2s; }
+    .footer-author:hover { color: var(--green); }
+    .footer-rights { color: #2a2a2a; font-size: 11px; }
+
     @media (max-width: 600px) {
       .ascii { font-size: 9px; }
       .nav-links { display: none; }
@@ -229,8 +250,16 @@
 </main>
 
 <footer class="site-footer">
-  © 2026 <a href="https://github.com/gpsn0w" target="_blank">Gabriel Zhechev</a> — All Rights Reserved.
-  Unauthorized copying or redistribution is prohibited.
+  <div class="footer-line">
+    <span class="footer-bracket">[</span>
+    <a href="https://gpsn0w.github.io/MiNator/" class="footer-brand">MiNator</a>
+    <span class="footer-bracket">]</span>
+    <span class="footer-sep">·</span>
+    <span class="footer-copy">© 2026</span>
+    <a href="https://github.com/gpsn0w" target="_blank" class="footer-author">Gabriel Zhechev</a>
+    <span class="footer-sep">·</span>
+    <span class="footer-rights">All Rights Reserved</span>
+  </div>
 </footer>
 
 <script>
