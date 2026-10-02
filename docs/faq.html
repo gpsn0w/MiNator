@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ | MiNator</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">MiNator</a>
+  <div class="nav-links">
+    <a href="getting-started.html">Docs</a>
+    <a href="categories.html">Categories</a>
+    <a href="faq.html">FAQ</a>
+    <a href="https://github.com/gpsn0w/MiNator" target="_blank">GitHub ↗</a>
+  </div>
+</nav>
+
+<div class="docs-layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">Introduction</div>
+      <a href="getting-started.html">Getting Started</a>
+      <a href="categories.html">Categories</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Reference</div>
+      <a href="faq.html" class="active">FAQ</a>
+      <a href="supported-devices.html">Supported Devices</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Links</div>
+      <a href="https://github.com/gpsn0w/MiNator" target="_blank">GitHub ↗</a>
+      <a href="https://github.com/gpsn0w/MiNator/releases/latest" target="_blank">Download ↗</a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <h1>FAQ</h1>
+
+    <h2>Is root required?</h2>
+    <p>No. MiNator uses <code>pm uninstall -k --user 0</code> via ADB, which works on any unlocked device without root.</p>
+
+    <h2>Will this brick my phone?</h2>
+    <p>No. The <code>-k</code> flag keeps the APK on the device — it's only disabled for your user. A factory reset restores everything. MiNator never removes system-critical packages.</p>
+
+    <h2>Can I restore a removed app?</h2>
+    <p>Yes, with ADB:</p>
+    <div class="code-block">
+      <code>adb shell cmd package install-existing com.package.name</code>
+    </div>
+    <p>Or simply do a factory reset to restore all apps.</p>
+
+    <h2>Nothing gets saved to my computer?</h2>
+    <p>Correct. When you use the one-liner commands, the scripts run entirely in memory and nothing is written to disk. After MiNator finishes, there are no leftover files.</p>
+
+    <h2>Will Find My Device stop working?</h2>
+    <p>Only if you remove Mi Cloud Backup (<code>com.miui.cloudbackup</code>), and even then it depends on your setup. MiNator warns you twice before removing it, and intentionally leaves <code>com.miui.cloudservice</code> intact since it's required for Find My Device.</p>
+
+    <h2>Does it work on HyperOS?</h2>
+    <p>Yes. MiNator supports both MIUI and HyperOS. It was tested on <strong>Xiaomi 14 — HyperOS 3.0</strong>.</p>
+
+    <h2>What if a package is not found?</h2>
+    <p>MiNator automatically tries alternative package names (e.g. <code>com.xiaomi.mipicks</code> → <code>com.miui.mipicks</code>). If neither is found, it reports the app as already removed or not present on your device.</p>
+
+    <h2>Does it support multiple devices?</h2>
+    <p>Yes. If multiple devices are connected, MiNator uses the first authorized one. Use <code>adb devices</code> to see what's connected.</p>
+
+    <h2>I see "Device found but NOT authorized"</h2>
+    <p>Unlock your phone screen and tap <strong>Allow</strong> on the USB Debugging dialog, then run MiNator again.</p>
+
+    <h2>Is the source code available?</h2>
+    <p>Yes — fully open source on <a href="https://github.com/gpsn0w/MiNator" target="_blank">GitHub ↗</a>. You can read every line before running anything.</p>
+
+  </main>
+</div>
+
+</body>
+</html>
