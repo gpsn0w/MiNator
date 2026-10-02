@@ -15,6 +15,41 @@ echo "       Keep Privacy First"
 echo "================================================"
 echo ""
 
+install_adb_manual() {
+    echo ""
+    echo "  ┌─────────────────────────────────────────────┐"
+    echo "  │         HOW TO INSTALL ADB MANUALLY         │"
+    echo "  ├─────────────────────────────────────────────┤"
+    echo "  │                                             │"
+    echo "  │  1. Download Android Platform Tools:        │"
+    echo "  │     https://developer.android.com/tools/    │"
+    echo "  │     releases/platform-tools                 │"
+    echo "  │                                             │"
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "  │  2. Extract the ZIP to a folder             │"
+    echo "  │     e.g. ~/platform-tools                   │"
+    echo "  │                                             │"
+    echo "  │  3. Add to PATH — run this command:         │"
+    echo "  │     echo 'export PATH=\$PATH:~/platform-tools'│"
+    echo "  │     >> ~/.zshrc && source ~/.zshrc          │"
+    else
+    echo "  │  2. Extract the ZIP to a folder             │"
+    echo "  │     e.g. ~/platform-tools                   │"
+    echo "  │                                             │"
+    echo "  │  3. Add to PATH — run this command:         │"
+    echo "  │     echo 'export PATH=\$PATH:~/platform-tools'│"
+    echo "  │     >> ~/.bashrc && source ~/.bashrc        │"
+    fi
+    echo "  │                                             │"
+    echo "  │  4. Run MiNator again:                      │"
+    echo "  │     curl -fsSL https://raw.githubusercontent│"
+    echo "  │     .com/gpsn0w/MiNator/main/install.sh    │"
+    echo "  │     | bash                                  │"
+    echo "  │                                             │"
+    echo "  └─────────────────────────────────────────────┘"
+    echo ""
+}
+
 # Check ADB
 if ! command -v adb &> /dev/null; then
     echo "[!] ADB not found on this system."
@@ -28,8 +63,17 @@ if ! command -v adb &> /dev/null; then
                     echo "[*] Installing via Homebrew..."
                     brew install android-platform-tools
                 else
-                    echo "[!] Homebrew not found. Install it first:"
-                    echo "    /bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+                    echo "[!] Homebrew not found."
+                    echo ""
+                    echo "    Install Homebrew first with this command:"
+                    echo ""
+                    echo '    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+                    echo ""
+                    echo "    Then install ADB:"
+                    echo "    brew install android-platform-tools"
+                    echo ""
+                    echo "    Or install ADB manually:"
+                    install_adb_manual
                     exit 1
                 fi
             elif command -v apt &> /dev/null; then
@@ -41,9 +85,12 @@ if ! command -v adb &> /dev/null; then
             elif command -v pacman &> /dev/null; then
                 echo "[*] Installing via pacman..."
                 sudo pacman -S --noconfirm android-tools
+            elif command -v zypper &> /dev/null; then
+                echo "[*] Installing via zypper..."
+                sudo zypper install -y android-tools
             else
-                echo "[!] Could not detect package manager."
-                echo "    Install ADB manually: https://developer.android.com/tools/releases/platform-tools"
+                echo "[!] No supported package manager found (apt / dnf / pacman / brew)."
+                install_adb_manual
                 exit 1
             fi
             echo ""
@@ -52,8 +99,9 @@ if ! command -v adb &> /dev/null; then
             ;;
         *)
             echo ""
-            echo "[!] ADB is required. Install it and run MiNator again."
-            exit 1
+            echo "[!] ADB is required to run MiNator."
+            install_adb_manual
+            exit 0
             ;;
     esac
 fi
