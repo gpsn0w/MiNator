@@ -1,0 +1,38 @@
+# MiNator
+
+> MiNator is an open-source bloatware removal tool for Xiaomi and Redmi devices running MIUI or HyperOS. Created by Gabriel Zhechev (gpsn0w). No root required.
+
+## What it does
+
+MiNator removes pre-installed bloatware from Xiaomi & Redmi devices using `pm uninstall -k --user 0`. Nothing is permanently deleted — apps can be restored with a factory reset.
+
+- Works on Mac, Linux and Windows
+- No root required
+- Tested on Xiaomi 14 — HyperOS 3.0
+- Supports MIUI and HyperOS
+
+## Install
+
+Mac / Linux:
+```
+bash <(curl -fsSL https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.sh)
+```
+
+Windows (PowerShell):
+```
+irm https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.ps1 | iex
+```
+
+## Pages
+
+- [Home](https://gpsn0w.github.io/MiNator/)
+- [Getting Started](https://gpsn0w.github.io/MiNator/getting-started.html)
+- [Package Categories](https://gpsn0w.github.io/MiNator/categories.html)
+- [FAQ](https://gpsn0w.github.io/MiNator/faq.html)
+- [Supported Devices](https://gpsn0w.github.io/MiNator/supported-devices.html)
+
+## Source
+
+- GitHub: https://github.com/gpsn0w/MiNator
+- Author: Gabriel Zhechev (https://github.com/gpsn0w)
+- License: MIT
