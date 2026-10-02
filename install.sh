@@ -106,10 +106,11 @@ if ! command -v adb &> /dev/null; then
     esac
 fi
 
-# Run MiNator entirely in memory
+# Check download before running
 echo "[*] Loading MiNator..."
 echo ""
-bash <(curl -fsSL "https://raw.githubusercontent.com/gpsn0w/MiNator/main/minator.sh") || {
+if ! curl -fsSL "https://raw.githubusercontent.com/gpsn0w/MiNator/main/minator.sh" -o /dev/null 2>/dev/null; then
     echo "[!] Download failed. Check your internet connection."
     exit 1
-}
+fi
+bash <(curl -fsSL "https://raw.githubusercontent.com/gpsn0w/MiNator/main/minator.sh")
