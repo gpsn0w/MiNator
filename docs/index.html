@@ -72,12 +72,17 @@
       align-items: center; justify-content: center;
       padding: 80px 24px 48px; text-align: center;
     }
-    .ascii {
+    .ascii-logo {
       font-family: 'Courier New', Courier, monospace;
-      font-size: 17px; line-height: 1.2; color: var(--green);
-      white-space: pre; margin-bottom: 28px;
-      text-shadow: 0 0 20px rgba(74,222,128,.3);
-      letter-spacing: 0; text-align: left;
+      font-size: 52px; font-weight: bold;
+      color: var(--green); letter-spacing: 10px;
+      text-shadow: 0 0 30px rgba(74,222,128,.5), 0 0 60px rgba(74,222,128,.2);
+      margin-bottom: 8px;
+    }
+    .ascii-sub {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px; color: #2a6e2a;
+      letter-spacing: 4px; margin-bottom: 28px;
     }
     .hero h1 { font-size: 18px; color: var(--text); margin-bottom: 8px; }
     .hero .by { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
@@ -141,7 +146,8 @@
     body.bg .inline-lang.bg { display: inline; }
 
     @media (max-width: 600px) {
-      .ascii { font-size: 8px; line-height: 1.15; }
+      .ascii-logo { font-size: 32px; letter-spacing: 5px; }
+      .ascii-sub { font-size: 10px; letter-spacing: 2px; }
       .nav-links { display: none; }
       .install-cmd { font-size: 11px; }
     }
@@ -164,11 +170,8 @@
 </nav>
 
 <main class="hero">
-  <pre class="ascii"> __  __ _ _   _       _
-|  \/  (_) \ | | __ _| |_ ___  _ __
-| |\/| | |  \| |/ _` | __/ _ \| '__|
-| |  | | | |\  | (_| | || (_) | |
-|_|  |_|_|_| \_|\__,_|\__\___/|_|  </pre>
+  <div class="ascii-logo">MiNator</div>
+  <div class="ascii-sub">[ XIAOMI BLOAT ELIMINATOR ]</div>
 
   <h1>[ Xiaomi Bloat Eliminator ]</h1>
   <p class="by">Made by gpsn0w &amp; Claude</p>
