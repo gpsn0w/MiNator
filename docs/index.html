@@ -267,7 +267,12 @@ function setLang(lang) {
   document.body.className = lang;
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  try { localStorage.setItem('minator-lang', lang); } catch(e) {}
 }
+try {
+  var saved = localStorage.getItem('minator-lang');
+  if (saved === 'bg') setLang('bg');
+} catch(e) {}
 
 document.addEventListener('copy', function(e) {
   var sel = window.getSelection().toString();
