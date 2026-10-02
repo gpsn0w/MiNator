@@ -57,7 +57,37 @@ nav {
   display: flex;
   gap: 24px;
   margin-left: auto;
+  align-items: center;
 }
+
+/* ── LANG TOGGLE ── */
+.lang-toggle {
+  display: flex;
+  border: 1px solid #1e3a1e;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-left: 8px;
+}
+.lang-btn {
+  padding: 4px 11px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  background: transparent;
+  color: var(--muted);
+  border: none;
+  cursor: pointer;
+  transition: all .2s;
+}
+.lang-btn.active { background: #166534; color: var(--accent); }
+.lang-btn:hover:not(.active) { color: var(--text); }
+
+/* ── LANG HIDE ── */
+[data-lang] { display: none; }
+body.en [data-lang="en"] { display: block; }
+body.bg [data-lang="bg"] { display: block; }
+.il { display: none; }
+body.en .il.en { display: inline; }
+body.bg .il.bg { display: inline; }
 
 .nav-links a {
   color: var(--muted);

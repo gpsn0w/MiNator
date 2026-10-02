@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="en">
 
 <nav>
   <a class="nav-logo" href="index.html">MiNator</a>
@@ -16,6 +16,10 @@
     <a href="categories.html">Categories</a>
     <a href="faq.html">FAQ</a>
     <a href="https://github.com/gpsn0w/MiNator" target="_blank">GitHub ↗</a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('bg')">BG</button>
+    </div>
   </div>
 </nav>
 
@@ -23,14 +27,14 @@
 
   <aside class="sidebar">
     <div class="sidebar-section">
-      <div class="sidebar-title">Introduction</div>
-      <a href="getting-started.html" class="active">Getting Started</a>
-      <a href="categories.html">Categories</a>
+      <div class="sidebar-title"><span class="il en">Introduction</span><span class="il bg">Въведение</span></div>
+      <a href="getting-started.html" class="active"><span class="il en">Getting Started</span><span class="il bg">Как да започна</span></a>
+      <a href="categories.html"><span class="il en">Categories</span><span class="il bg">Категории</span></a>
     </div>
     <div class="sidebar-section">
-      <div class="sidebar-title">Reference</div>
+      <div class="sidebar-title"><span class="il en">Reference</span><span class="il bg">Справка</span></div>
       <a href="faq.html">FAQ</a>
-      <a href="supported-devices.html">Supported Devices</a>
+      <a href="supported-devices.html"><span class="il en">Supported Devices</span><span class="il bg">Устройства</span></a>
     </div>
     <div class="sidebar-section">
       <div class="sidebar-title">Links</div>
@@ -40,122 +44,166 @@
   </aside>
 
   <main class="content">
-    <h1>Getting Started</h1>
 
-    <div class="callout callout-warning">
-      <strong>⚠ Important</strong>
-      <p>MiNator removes apps using <code>pm uninstall -k --user 0</code>. This does NOT permanently delete anything — it only disables apps for your user. A factory reset restores them. No root is required.</p>
-    </div>
+    <div data-lang="en">
+      <h1>Getting Started</h1>
 
-    <h2>Quick Start Checklist</h2>
-    <p>Before you begin, make sure you have:</p>
-    <ul>
-      <li>✓ A Xiaomi or Redmi device running MIUI or HyperOS</li>
-      <li>✓ ADB installed on your computer</li>
-      <li>✓ USB cable or Wireless ADB set up</li>
-      <li>✓ USB Debugging enabled on your phone</li>
-    </ul>
-
-    <h2>Step 1 — Enable Developer Options</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h3>Open About Phone</h3>
-          <p>Go to <strong>Settings → About phone</strong>.<br>
-          Find <strong>MIUI Version</strong> or <strong>HyperOS Version</strong> and tap it <strong>7 times</strong>.<br>
-          You'll see: <em style="color:#66bb6a">"You are now a developer!"</em></p>
-        </div>
+      <div class="callout callout-warning">
+        <strong>⚠ Important</strong>
+        <p>MiNator removes apps using <code>pm uninstall -k --user 0</code>. This does NOT permanently delete anything — it only disables apps for your user. A factory reset restores them. No root is required.</p>
       </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <h3>Enable USB Debugging</h3>
-          <p>Go to <strong>Settings → Additional settings → Developer options</strong>.<br>
-          Enable <strong>USB debugging</strong>.</p>
+
+      <h2>Quick Start Checklist</h2>
+      <p>Before you begin, make sure you have:</p>
+      <ul>
+        <li>✓ A Xiaomi or Redmi device running MIUI or HyperOS</li>
+        <li>✓ ADB installed on your computer</li>
+        <li>✓ USB cable or Wireless ADB set up</li>
+        <li>✓ USB Debugging enabled on your phone</li>
+      </ul>
+
+      <h2>Step 1 — Enable Developer Options</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>Open About Phone</h3>
+            <p>Go to <strong>Settings → About phone</strong>.<br>
+            Find <strong>MIUI Version</strong> or <strong>HyperOS Version</strong> and tap it <strong>7 times</strong>.<br>
+            You'll see: <em style="color:var(--accent)">"You are now a developer!"</em></p>
+          </div>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <h3>Connect your phone</h3>
-          <p>Connect your phone via USB cable.<br>
-          When prompted on the phone, tap <strong>Allow</strong>.</p>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>Enable USB Debugging</h3>
+            <p>Go to <strong>Settings → Additional settings → Developer options</strong>.<br>
+            Enable <strong>USB debugging</strong>.</p>
+          </div>
         </div>
-      </div>
-    </div>
-
-    <h2>Step 2 — Install ADB</h2>
-
-    <div class="code-block">
-      <div class="label">Mac</div>
-      <code>brew install android-platform-tools</code>
-    </div>
-
-    <div class="code-block">
-      <div class="label">Ubuntu / Debian</div>
-      <code>sudo apt install adb</code>
-    </div>
-
-    <div class="code-block">
-      <div class="label">Fedora</div>
-      <code>sudo dnf install android-tools</code>
-    </div>
-
-    <p>Windows: <a href="https://developer.android.com/tools/releases/platform-tools" target="_blank">Download Platform Tools ↗</a> — extract and add to PATH.</p>
-
-    <h2>Step 3 — Run MiNator</h2>
-    <p>The easiest way — one command, nothing saved to disk:</p>
-
-    <div class="code-block">
-      <div class="label">Mac / Linux</div>
-      <code>bash &lt;(curl -fsSL https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.sh)</code>
-    </div>
-
-    <div class="code-block">
-      <div class="label">Windows (PowerShell)</div>
-      <code>irm https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.ps1 | iex</code>
-    </div>
-
-    <p>Or download the files manually from the <a href="https://github.com/gpsn0w/MiNator/releases/latest" target="_blank">latest release ↗</a>.</p>
-
-    <h2>Wireless ADB (Android 11+)</h2>
-    <p>No USB cable needed:</p>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <p>Go to <strong>Developer options → Wireless debugging → Enable</strong>.<br>
-          Tap <strong>Pair device with pairing code</strong>.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <div class="code-block">
-            <div class="label">Pair</div>
-            <code>adb pair IP:PORT</code>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>Connect your phone</h3>
+            <p>Connect your phone via USB cable.<br>
+            When prompted on the phone, tap <strong>Allow</strong>.</p>
           </div>
         </div>
       </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <div class="code-block">
-            <div class="label">Connect</div>
-            <code>adb connect IP:PORT</code>
-          </div>
-        </div>
+
+      <h2>Step 2 — Install ADB</h2>
+      <div class="code-block"><div class="label">Mac</div><code>brew install android-platform-tools</code></div>
+      <div class="code-block"><div class="label">Ubuntu / Debian</div><code>sudo apt install adb</code></div>
+      <div class="code-block"><div class="label">Fedora</div><code>sudo dnf install android-tools</code></div>
+      <p>Windows: <a href="https://developer.android.com/tools/releases/platform-tools" target="_blank">Download Platform Tools ↗</a> — extract and add to PATH.</p>
+
+      <h2>Step 3 — Run MiNator</h2>
+      <p>One command, nothing saved to disk:</p>
+      <div class="code-block"><div class="label">Mac / Linux</div><code>bash &lt;(curl -fsSL https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.sh)</code></div>
+      <div class="code-block"><div class="label">Windows (PowerShell)</div><code>irm https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.ps1 | iex</code></div>
+      <p>Or download manually from the <a href="https://github.com/gpsn0w/MiNator/releases/latest" target="_blank">latest release ↗</a>.</p>
+
+      <h2>Wireless ADB (Android 11+)</h2>
+      <p>No USB cable needed:</p>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><p>Go to <strong>Developer options → Wireless debugging → Enable</strong>.<br>Tap <strong>Pair device with pairing code</strong>.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><div class="code-block"><div class="label">Pair</div><code>adb pair IP:PORT</code></div></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><div class="code-block"><div class="label">Connect</div><code>adb connect IP:PORT</code></div></div></div>
+      </div>
+
+      <div class="callout callout-success">
+        <strong>✓ Done</strong>
+        <p>After MiNator finishes, <strong>restart your phone</strong> to apply all changes.</p>
       </div>
     </div>
 
-    <div class="callout callout-success">
-      <strong>✓ Done</strong>
-      <p>After MiNator finishes, <strong>restart your phone</strong> to apply all changes.</p>
+    <div data-lang="bg">
+      <h1>Как да започна</h1>
+
+      <div class="callout callout-warning">
+        <strong>⚠ Важно</strong>
+        <p>MiNator маха приложения с <code>pm uninstall -k --user 0</code>. Това НЕ изтрива нищо за постоянно — само деактивира приложението за твоя потребител. Фабричният ресет ги връща обратно. Не е нужен root.</p>
+      </div>
+
+      <h2>Бърза проверка преди старт</h2>
+      <p>Увери се, че имаш:</p>
+      <ul>
+        <li>✓ Xiaomi или Redmi устройство с MIUI или HyperOS</li>
+        <li>✓ ADB инсталиран на компютъра</li>
+        <li>✓ USB кабел или Wireless ADB</li>
+        <li>✓ USB Debugging включен на телефона</li>
+      </ul>
+
+      <h2>Стъпка 1 — Включи Developer Options</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>Отвори "За телефона"</h3>
+            <p>Отиди в <strong>Настройки → За телефона</strong>.<br>
+            Намери <strong>MIUI версия</strong> или <strong>HyperOS версия</strong> и натисни я <strong>7 пъти</strong>.<br>
+            Ще видиш: <em style="color:var(--accent)">"Вече сте разработчик!"</em></p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>Включи USB Debugging</h3>
+            <p>Отиди в <strong>Настройки → Допълнителни настройки → Опции за разработчици</strong>.<br>
+            Включи <strong>USB отстраняване на грешки</strong>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>Свържи телефона</h3>
+            <p>Свържи телефона с USB кабел.<br>
+            Когато телефонът попита, натисни <strong>Разреши</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+      <h2>Стъпка 2 — Инсталирай ADB</h2>
+      <div class="code-block"><div class="label">Mac</div><code>brew install android-platform-tools</code></div>
+      <div class="code-block"><div class="label">Ubuntu / Debian</div><code>sudo apt install adb</code></div>
+      <div class="code-block"><div class="label">Fedora</div><code>sudo dnf install android-tools</code></div>
+      <p>Windows: <a href="https://developer.android.com/tools/releases/platform-tools" target="_blank">Свали Platform Tools ↗</a> — разархивирай и добави в PATH.</p>
+
+      <h2>Стъпка 3 — Стартирай MiNator</h2>
+      <p>Една команда, нищо не се записва на диска:</p>
+      <div class="code-block"><div class="label">Mac / Linux</div><code>bash &lt;(curl -fsSL https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.sh)</code></div>
+      <div class="code-block"><div class="label">Windows (PowerShell)</div><code>irm https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.ps1 | iex</code></div>
+      <p>Или свали ръчно от <a href="https://github.com/gpsn0w/MiNator/releases/latest" target="_blank">последния release ↗</a>.</p>
+
+      <h2>Wireless ADB (Android 11+)</h2>
+      <p>Без USB кабел:</p>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><p>Отиди в <strong>Опции за разработчици → Безжично отстраняване на грешки → Включи</strong>.<br>Натисни <strong>Сдвоявне на устройство с код</strong>.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><div class="code-block"><div class="label">Сдвои</div><code>adb pair IP:PORT</code></div></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><div class="code-block"><div class="label">Свържи</div><code>adb connect IP:PORT</code></div></div></div>
+      </div>
+
+      <div class="callout callout-success">
+        <strong>✓ Готово</strong>
+        <p>След като MiNator приключи, <strong>рестартирай телефона</strong> за да се приложат промените.</p>
+      </div>
     </div>
 
   </main>
 </div>
+
+<script>
+function setLang(lang) {
+  document.body.className = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  localStorage.setItem('minator-lang', lang);
+}
+try {
+  var saved = localStorage.getItem('minator-lang');
+  if (saved === 'bg') setLang('bg');
+} catch(e) {}
+</script>
 
 </body>
 </html>
