@@ -79,7 +79,23 @@ MiNator маха предварително инсталирания bloatware �
   - **Fedora:** `sudo dnf install android-tools`
   - **Windows:** [Download Platform Tools](https://developer.android.com/tools/releases/platform-tools)
 
-### Run / Стартирай
+### One-line install / Инсталация с един ред
+
+**Mac / Linux:**
+```bash
+curl -fsSL https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.sh | bash
+```
+
+**Windows (PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.ps1 | iex
+```
+
+> Automatically checks if ADB is installed — if not, offers to install it for you.
+
+---
+
+### Manual run / Ръчно стартиране
 
 **Mac / Linux:**
 ```bash
