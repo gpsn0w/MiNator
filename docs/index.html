@@ -4,10 +4,131 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MiNator — Xiaomi Bloat Eliminator</title>
-  <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111;
+      --border: #1e3a1e;
+      --text: #e0e0e0;
+      --muted: #6b8f6b;
+      --green: #4ade80;
+      --green-dim: #22c55e;
+      --green-dark: #166534;
+      --font: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; }
+    a { color: var(--green); text-decoration: none; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: 52px; background: #0d0d0d;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+      padding: 0 28px; z-index: 100;
+    }
+    .nav-logo { font-size: 16px; font-weight: 700; color: var(--green); margin-right: auto; }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { color: var(--muted); font-size: 13px; transition: color .2s; }
+    .nav-links a:hover { color: var(--green); }
+
+    /* LANG TOGGLE */
+    .lang-toggle {
+      display: flex; gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 6px; overflow: hidden;
+      margin-left: 20px;
+    }
+    .lang-btn {
+      padding: 5px 12px; font-size: 12px; font-family: var(--font);
+      background: transparent; color: var(--muted);
+      border: none; cursor: pointer; transition: all .2s;
+    }
+    .lang-btn.active { background: var(--green-dark); color: var(--green); }
+    .lang-btn:hover:not(.active) { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 80px 24px 48px; text-align: center;
+    }
+    .ascii {
+      font-size: 14px; line-height: 1.25; color: var(--green);
+      white-space: pre; margin-bottom: 28px;
+      text-shadow: 0 0 20px rgba(74,222,128,.3);
+    }
+    .hero h1 { font-size: 18px; color: var(--text); margin-bottom: 8px; }
+    .hero .by { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+    .hero .tagline { font-size: 13px; color: var(--green); margin-bottom: 36px; }
+
+    hr { width: 440px; max-width: 100%; border: none; border-top: 1px solid var(--border); margin-bottom: 32px; }
+
+    .desc { max-width: 480px; font-size: 13px; color: var(--muted); line-height: 1.9; margin-bottom: 36px; }
+    .desc strong { color: var(--text); }
+
+    /* INSTALL BOX */
+    .install-box {
+      background: #0d1a0d; border: 1px solid var(--border);
+      border-radius: 10px; padding: 20px 24px;
+      max-width: 560px; width: 100%; margin-bottom: 16px;
+      text-align: left;
+    }
+    .install-label {
+      font-size: 11px; color: var(--muted); text-transform: uppercase;
+      letter-spacing: .08em; margin-bottom: 10px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .install-cmd {
+      font-size: 13px; color: var(--green);
+      word-break: break-all; line-height: 1.6;
+    }
+    .copy-btn {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--muted); font-family: var(--font); font-size: 11px;
+      padding: 3px 10px; border-radius: 4px; cursor: pointer;
+      transition: all .2s; white-space: nowrap;
+    }
+    .copy-btn:hover { border-color: var(--green); color: var(--green); }
+    .copy-btn.copied { color: var(--green); border-color: var(--green); }
+
+    /* GETTING STARTED BUTTON */
+    .btn-docs {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 28px; background: var(--green);
+      color: #000; font-family: var(--font); font-size: 13px;
+      font-weight: 700; border-radius: 7px; margin-top: 8px;
+      transition: opacity .2s;
+    }
+    .btn-docs:hover { opacity: .85; }
+
+    /* WARNING */
+    .warning {
+      margin-top: 44px; max-width: 480px;
+      padding: 14px 18px; border-radius: 8px;
+      background: rgba(74,222,128,.05); border: 1px solid rgba(74,222,128,.15);
+      font-size: 12px; color: var(--muted); text-align: left; line-height: 1.7;
+    }
+    .warning strong { color: var(--green); }
+
+    /* LANG HIDE */
+    [data-lang] { display: none; }
+    body.en [data-lang="en"] { display: block; }
+    body.bg [data-lang="bg"] { display: block; }
+    .inline-lang { display: none; }
+    body.en .inline-lang.en { display: inline; }
+    body.bg .inline-lang.bg { display: inline; }
+
+    @media (max-width: 600px) {
+      .ascii { font-size: 7px; }
+      .nav-links { display: none; }
+      .install-cmd { font-size: 11px; }
+    }
+  </style>
 </head>
-<body>
+<body class="en">
 
 <nav>
   <span class="nav-logo">MiNator</span>
@@ -16,40 +137,89 @@
     <a href="categories.html">Categories</a>
     <a href="faq.html">FAQ</a>
     <a href="https://github.com/gpsn0w/MiNator" target="_blank">GitHub ↗</a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('bg')">BG</button>
+    </div>
   </div>
 </nav>
 
 <main class="hero">
-  <pre class="hero-ascii"> __  __ _ _   _       _
+  <pre class="ascii"> __  __ _ _   _       _
 |  \/  (_) \ | | __ _| |_ ___  _ __
 | |\/| | |  \| |/ _` | __/ _ \| '__|
 | |  | | | |\  | (_| | || (_) | |
 |_|  |_|_|_| \_|\__,_|\__\___/|_|  </pre>
 
   <h1>[ Xiaomi Bloat Eliminator ]</h1>
-  <p class="tagline">Made by gpsn0w &amp; Claude</p>
-  <p class="privacy">Keep Privacy First / Дръжте поверителността първа.</p>
-
-  <hr class="hero-divider">
-
-  <p class="hero-desc">
-    Remove pre-installed bloatware from Xiaomi &amp; Redmi devices running MIUI or HyperOS.<br>
-    No root required. Works on Mac, Linux and Windows.<br><br>
-    Tested on <strong style="color:#e0e0e0">Xiaomi 14 — HyperOS 3.0</strong> ✓
+  <p class="by">Made by gpsn0w &amp; Claude</p>
+  <p class="tagline">
+    <span class="inline-lang en">Keep Privacy First</span>
+    <span class="inline-lang bg">Дръжте поверителността първа.</span>
   </p>
 
-  <div class="buttons">
-    <a class="btn btn-primary" href="getting-started.html">Getting Started</a>
-    <a class="btn btn-secondary" href="https://github.com/gpsn0w/MiNator/releases/latest" target="_blank">↓ Download</a>
+  <hr>
+
+  <div data-lang="en">
+    <p class="desc">
+      Remove pre-installed bloatware from <strong>Xiaomi &amp; Redmi</strong> devices running MIUI or HyperOS.<br>
+      No root required. Works on Mac, Linux and Windows.<br><br>
+      Tested on <strong>Xiaomi 14 — HyperOS 3.0</strong> ✓
+    </p>
+  </div>
+  <div data-lang="bg">
+    <p class="desc">
+      Маха предварително инсталирания bloatware от <strong>Xiaomi &amp; Redmi</strong> устройства с MIUI или HyperOS.<br>
+      Не е нужен root. Работи на Mac, Linux и Windows.<br><br>
+      Тествано на <strong>Xiaomi 14 — HyperOS 3.0</strong> ✓
+    </p>
   </div>
 
-  <div class="hero-warning">
-    <strong>⚠ Note</strong>
-    This tool removes user-space bloatware using <code>pm uninstall -k --user 0</code>.
-    Nothing is permanently deleted — apps can be restored by resetting the device.
-    No root access is required.
+  <!-- Mac / Linux -->
+  <div class="install-box">
+    <div class="install-label">
+      <span>Mac / Linux</span>
+      <button class="copy-btn" onclick="copyCmd(this, 'bash <(curl -fsSL https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.sh)')">Copy</button>
+    </div>
+    <div class="install-cmd">bash &lt;(curl -fsSL https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.sh)</div>
+  </div>
+
+  <!-- Windows -->
+  <div class="install-box">
+    <div class="install-label">
+      <span>Windows (PowerShell)</span>
+      <button class="copy-btn" onclick="copyCmd(this, 'irm https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.ps1 | iex')">Copy</button>
+    </div>
+    <div class="install-cmd">irm https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.ps1 | iex</div>
+  </div>
+
+  <a class="btn-docs" href="getting-started.html">
+    <span data-lang="en" style="display:inline">Getting Started →</span>
+    <span data-lang="bg" style="display:inline">Как да започна →</span>
+  </a>
+
+  <div class="warning">
+    <strong>Note — </strong>
+    <span class="inline-lang en">Uses <code>pm uninstall -k --user 0</code> — nothing is permanently deleted. Apps can be restored with a factory reset.</span>
+    <span class="inline-lang bg">Използва <code>pm uninstall -k --user 0</code> — нищо не се изтрива за постоянно. Приложенията могат да се върнат с фабричен ресет.</span>
   </div>
 </main>
+
+<script>
+function setLang(lang) {
+  document.body.className = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+}
+
+function copyCmd(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
 
 </body>
 </html>
