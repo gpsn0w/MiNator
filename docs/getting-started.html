@@ -192,7 +192,21 @@
   </main>
 </div>
 
+<footer class="site-footer">
+  © 2026 <a href="https://github.com/gpsn0w" target="_blank">Gabriel Zhechev</a> — All Rights Reserved.
+  Unauthorized copying or redistribution is prohibited.
+</footer>
+
 <script>
+document.addEventListener('copy', function(e) {
+  var sel = window.getSelection().toString();
+  if (sel.length > 30) {
+    var notice = '\n\n© 2026 Gabriel Zhechev — gpsn0w.github.io/MiNator/\nAll Rights Reserved. Unauthorized copying is prohibited.';
+    e.clipboardData.setData('text/plain', sel + notice);
+    e.preventDefault();
+  }
+});
+
 function setLang(lang) {
   document.body.className = lang;
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));

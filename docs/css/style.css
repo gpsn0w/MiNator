@@ -420,6 +420,19 @@ body.bg .il.bg { display: inline; }
 .badge-warn { background: rgba(255,167,38,.15); color: var(--yellow); }
 .badge-danger { background: rgba(239,83,80,.15); color: var(--red); }
 
+/* ── FOOTER ── */
+.site-footer {
+  text-align: center;
+  padding: 28px 24px;
+  font-size: 12px;
+  color: #444;
+  border-top: 1px solid #1a1a1a;
+  margin-top: 48px;
+  font-family: var(--font-mono);
+}
+.site-footer a { color: #555; }
+.site-footer a:hover { color: var(--accent); }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   .hero-ascii { font-size: 8px; }

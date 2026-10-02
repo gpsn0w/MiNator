@@ -7,6 +7,7 @@
   <meta name="description" content="Remove pre-installed bloatware from Xiaomi & Redmi devices running MIUI or HyperOS. No root required. Works on Mac, Linux and Windows.">
   <meta name="keywords" content="xiaomi bloatware remover, redmi debloater, MIUI bloat, HyperOS debloat, ADB xiaomi, remove xiaomi apps, privacy xiaomi">
   <meta name="author" content="gpsn0w">
+  <meta name="copyright" content="© 2026 Gabriel Zhechev. All Rights Reserved.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://gpsn0w.github.io/MiNator/">
 
@@ -223,12 +224,26 @@
   </div>
 </main>
 
+<footer class="site-footer">
+  © 2026 <a href="https://github.com/gpsn0w" target="_blank">Gabriel Zhechev</a> — All Rights Reserved.
+  Unauthorized copying or redistribution is prohibited.
+</footer>
+
 <script>
 function setLang(lang) {
   document.body.className = lang;
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
 }
+
+document.addEventListener('copy', function(e) {
+  var sel = window.getSelection().toString();
+  if (sel.length > 30) {
+    var notice = '\n\n© 2026 Gabriel Zhechev — gpsn0w.github.io/MiNator/\nAll Rights Reserved. Unauthorized copying is prohibited.';
+    e.clipboardData.setData('text/plain', sel + notice);
+    e.preventDefault();
+  }
+});
 
 function copyCmd(btn, text) {
   navigator.clipboard.writeText(text).then(() => {
