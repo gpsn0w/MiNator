@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gpsn0w.github.io/MiNator/sitemap.xml
