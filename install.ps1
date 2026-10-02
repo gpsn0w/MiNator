@@ -87,6 +87,12 @@ if (-not (Get-Command adb -ErrorAction SilentlyContinue)) {
     }
 }
 
-# Run MiNator entirely in memory
+# Download minator.ps1 to temp and run with & (avoids iex/AMSI issues)
 Write-Host "[*] Loading MiNator..." -ForegroundColor Cyan
-Invoke-Expression (Invoke-RestMethod "https://raw.githubusercontent.com/gpsn0w/MiNator/main/minator.ps1")
+$tmpMinator = "$env:TEMP\minator_$(Get-Random).ps1"
+try {
+    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/gpsn0w/MiNator/main/minator.ps1" -OutFile $tmpMinator -UseBasicParsing
+    & $tmpMinator
+} finally {
+    if (Test-Path $tmpMinator) { Remove-Item $tmpMinator -Force }
+}
