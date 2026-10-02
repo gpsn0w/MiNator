@@ -1,6 +1,6 @@
 #!/bin/bash
 # MiNator - One-line installer for Mac/Linux
-# curl -fsSL https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.sh | bash
+# bash <(curl -fsSL https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.sh)
 
 clear
 echo " __  __ _ _   _       _            "
@@ -67,6 +67,7 @@ if ! command -v adb &> /dev/null; then
                     echo ""
                     echo "    Install Homebrew first with this command:"
                     echo ""
+                    # shellcheck disable=SC2016
                     echo '    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
                     echo ""
                     echo "    Then install ADB:"
@@ -106,11 +107,13 @@ if ! command -v adb &> /dev/null; then
     esac
 fi
 
-# Check download before running
+# Download once, run in memory
 echo "[*] Loading MiNator..."
 echo ""
-if ! curl -fsSL "https://raw.githubusercontent.com/gpsn0w/MiNator/main/minator.sh" -o /dev/null 2>/dev/null; then
+MINATOR_URL="https://raw.githubusercontent.com/gpsn0w/MiNator/main/minator.sh"
+MINATOR_CONTENT=$(curl -fsSL "$MINATOR_URL" 2>/dev/null)
+if [ -z "$MINATOR_CONTENT" ]; then
     echo "[!] Download failed. Check your internet connection."
     exit 1
 fi
-bash <(curl -fsSL "https://raw.githubusercontent.com/gpsn0w/MiNator/main/minator.sh")
+bash <(printf '%s\n' "$MINATOR_CONTENT")

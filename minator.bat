@@ -18,8 +18,7 @@ echo        Made by gpsn0w ^& Claude
 echo           Keep Privacy First
 echo ================================================
 echo.
-rem Instructions shown after language selection - see :SHOW_INSTRUCTIONS
-echo.
+rem Instructions shown after language selection
 
 :SELECT_LANG
 echo Select language / Избери език:
@@ -368,7 +367,7 @@ set PKG=%~1
 set ALT=%~2
 set DESC_EN=%~3
 set DESC_BG=%~4
-set RESULT_FILE=%TEMP%\minator_tmp.txt
+set RESULT_FILE=%TEMP%\minator_%RANDOM%.txt
 
 if not "%ALT%"=="" (
     echo   -^> %PKG% / %ALT%
@@ -401,5 +400,6 @@ if not "%ALT%"=="" (
 ) else (
     if %LANG_BG%==1 (echo OK - Вече е махнат от преди, или не е на това устройство :^)) else (echo OK - Already removed before, or not on this device :^))
 )
+if exist "%RESULT_FILE%" del "%RESULT_FILE%"
 echo.
 goto :eof
