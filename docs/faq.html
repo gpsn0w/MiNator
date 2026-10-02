@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="en">
 
 <nav>
   <a class="nav-logo" href="index.html">MiNator</a>
@@ -16,6 +16,10 @@
     <a href="categories.html">Categories</a>
     <a href="faq.html">FAQ</a>
     <a href="https://github.com/gpsn0w/MiNator" target="_blank">GitHub ↗</a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('bg')">BG</button>
+    </div>
   </div>
 </nav>
 
@@ -23,14 +27,14 @@
 
   <aside class="sidebar">
     <div class="sidebar-section">
-      <div class="sidebar-title">Introduction</div>
-      <a href="getting-started.html">Getting Started</a>
-      <a href="categories.html">Categories</a>
+      <div class="sidebar-title"><span class="il en">Introduction</span><span class="il bg">Въведение</span></div>
+      <a href="getting-started.html"><span class="il en">Getting Started</span><span class="il bg">Как да започна</span></a>
+      <a href="categories.html"><span class="il en">Categories</span><span class="il bg">Категории</span></a>
     </div>
     <div class="sidebar-section">
-      <div class="sidebar-title">Reference</div>
+      <div class="sidebar-title"><span class="il en">Reference</span><span class="il bg">Справка</span></div>
       <a href="faq.html" class="active">FAQ</a>
-      <a href="supported-devices.html">Supported Devices</a>
+      <a href="supported-devices.html"><span class="il en">Supported Devices</span><span class="il bg">Устройства</span></a>
     </div>
     <div class="sidebar-section">
       <div class="sidebar-title">Links</div>
@@ -40,44 +44,120 @@
   </aside>
 
   <main class="content">
-    <h1>FAQ</h1>
 
-    <h2>Is root required?</h2>
-    <p>No. MiNator uses <code>pm uninstall -k --user 0</code> via ADB, which works on any unlocked device without root.</p>
+    <div data-lang="en">
+      <h1>FAQ</h1>
 
-    <h2>Will this brick my phone?</h2>
-    <p>No. The <code>-k</code> flag keeps the APK on the device — it's only disabled for your user. A factory reset restores everything. MiNator never removes system-critical packages.</p>
+      <h2>Is root required?</h2>
+      <p>No. MiNator uses <code>pm uninstall -k --user 0</code> via ADB, which works on any unlocked device without root.</p>
 
-    <h2>Can I restore a removed app?</h2>
-    <p>Yes, with ADB:</p>
-    <div class="code-block">
-      <code>adb shell cmd package install-existing com.package.name</code>
+      <h2>Will this brick my phone?</h2>
+      <p>No. The <code>-k</code> flag keeps the APK on the device — it's only disabled for your user. A factory reset restores everything. MiNator never removes system-critical packages.</p>
+
+      <h2>Can I restore a removed app?</h2>
+      <p>Yes, with ADB:</p>
+      <div class="code-block">
+        <code>adb shell cmd package install-existing com.package.name</code>
+      </div>
+      <p>Or simply do a factory reset to restore all apps.</p>
+
+      <h2>Nothing gets saved to my computer?</h2>
+      <p>Correct. When you use the one-liner commands, the scripts run entirely in memory and nothing is written to disk. After MiNator finishes, there are no leftover files.</p>
+
+      <h2>Will Find My Device stop working?</h2>
+      <p>Only if you remove Mi Cloud Backup (<code>com.miui.cloudbackup</code>), and even then it depends on your setup. MiNator warns you twice before removing it, and intentionally leaves <code>com.miui.cloudservice</code> intact since it's required for Find My Device.</p>
+
+      <h2>Does it work on HyperOS?</h2>
+      <p>Yes. MiNator supports both MIUI and HyperOS. It was tested on <strong>Xiaomi 14 — HyperOS 3.0</strong>.</p>
+
+      <h2>What if a package is not found?</h2>
+      <p>MiNator automatically tries alternative package names (e.g. <code>com.xiaomi.mipicks</code> → <code>com.miui.mipicks</code>). If neither is found, it reports the app as already removed or not present on your device.</p>
+
+      <h2>Does it support multiple devices?</h2>
+      <p>Yes. If multiple devices are connected, MiNator uses the first authorized one. Use <code>adb devices</code> to see what's connected.</p>
+
+      <h2>I see "Device found but NOT authorized"</h2>
+      <p>Unlock your phone screen and tap <strong>Allow</strong> on the USB Debugging dialog, then run MiNator again.</p>
+
+      <h2>Is the source code available?</h2>
+      <p>The source code is on <a href="https://github.com/gpsn0w/MiNator" target="_blank">GitHub ↗</a>. You can read every line before running anything.</p>
     </div>
-    <p>Or simply do a factory reset to restore all apps.</p>
 
-    <h2>Nothing gets saved to my computer?</h2>
-    <p>Correct. When you use the one-liner commands, the scripts run entirely in memory and nothing is written to disk. After MiNator finishes, there are no leftover files.</p>
+    <div data-lang="bg">
+      <h1>FAQ</h1>
 
-    <h2>Will Find My Device stop working?</h2>
-    <p>Only if you remove Mi Cloud Backup (<code>com.miui.cloudbackup</code>), and even then it depends on your setup. MiNator warns you twice before removing it, and intentionally leaves <code>com.miui.cloudservice</code> intact since it's required for Find My Device.</p>
+      <h2>Нужен ли е root?</h2>
+      <p>Не. MiNator използва <code>pm uninstall -k --user 0</code> през ADB, което работи на всяко отключено устройство без root.</p>
 
-    <h2>Does it work on HyperOS?</h2>
-    <p>Yes. MiNator supports both MIUI and HyperOS. It was tested on <strong>Xiaomi 14 — HyperOS 3.0</strong>.</p>
+      <h2>Ще убие ли телефона ми?</h2>
+      <p>Не. Флагът <code>-k</code> запазва APK-то на устройството — само го деактивира за твоя потребител. Фабричният ресет връща всичко. MiNator никога не маха системно-критични пакети.</p>
 
-    <h2>What if a package is not found?</h2>
-    <p>MiNator automatically tries alternative package names (e.g. <code>com.xiaomi.mipicks</code> → <code>com.miui.mipicks</code>). If neither is found, it reports the app as already removed or not present on your device.</p>
+      <h2>Мога ли да върна махнато приложение?</h2>
+      <p>Да, с ADB:</p>
+      <div class="code-block">
+        <code>adb shell cmd package install-existing com.package.name</code>
+      </div>
+      <p>Или просто направи фабричен ресет за да върнеш всички приложения.</p>
 
-    <h2>Does it support multiple devices?</h2>
-    <p>Yes. If multiple devices are connected, MiNator uses the first authorized one. Use <code>adb devices</code> to see what's connected.</p>
+      <h2>Нищо не се записва на компютъра ми?</h2>
+      <p>Точно така. Когато ползваш едноредовите команди, скриптовете се изпълняват изцяло в паметта и нищо не се записва на диска. След като MiNator приключи, не остават файлове.</p>
 
-    <h2>I see "Device found but NOT authorized"</h2>
-    <p>Unlock your phone screen and tap <strong>Allow</strong> on the USB Debugging dialog, then run MiNator again.</p>
+      <h2>Ще спре ли Find My Device да работи?</h2>
+      <p>Само ако махнеш Mi Cloud Backup (<code>com.miui.cloudbackup</code>), и дори тогава зависи от настройките ти. MiNator те предупреждава два пъти преди да го маха, и умишлено оставя <code>com.miui.cloudservice</code> непокътнат.</p>
 
-    <h2>Is the source code available?</h2>
-    <p>Yes — fully open source on <a href="https://github.com/gpsn0w/MiNator" target="_blank">GitHub ↗</a>. You can read every line before running anything.</p>
+      <h2>Работи ли на HyperOS?</h2>
+      <p>Да. MiNator поддържа и MIUI, и HyperOS. Тестван на <strong>Xiaomi 14 — HyperOS 3.0</strong>.</p>
+
+      <h2>Какво ако пакетът не е намерен?</h2>
+      <p>MiNator автоматично опитва алтернативни имена на пакети (напр. <code>com.xiaomi.mipicks</code> → <code>com.miui.mipicks</code>). Ако нито едното е намерено, съобщава, че приложението е вече махнато или не е на устройството.</p>
+
+      <h2>Поддържа ли множество устройства?</h2>
+      <p>Да. Ако са свързани няколко устройства, MiNator ползва първото оторизирано. Използвай <code>adb devices</code> за да видиш кое е свързано.</p>
+
+      <h2>Виждам "Device found but NOT authorized"</h2>
+      <p>Отключи екрана на телефона и натисни <strong>Разреши</strong> на диалога за USB Debugging, след което стартирай MiNator отново.</p>
+
+      <h2>Изходният код достъпен ли е?</h2>
+      <p>Изходният код е в <a href="https://github.com/gpsn0w/MiNator" target="_blank">GitHub ↗</a>. Можеш да прочетеш всеки ред преди да пускаш каквото и да е.</p>
+    </div>
 
   </main>
 </div>
+
+<footer class="site-footer">
+  <div class="footer-line">
+    <span class="footer-bracket">[</span>
+    <a href="https://gpsn0w.github.io/MiNator/" class="footer-brand">MiNator</a>
+    <span class="footer-bracket">]</span>
+    <span class="footer-sep">·</span>
+    <span class="footer-copy">© 2026</span>
+    <a href="https://github.com/gpsn0w" target="_blank" class="footer-author">Gabriel Zhechev</a>
+    <span class="footer-sep">·</span>
+    <span class="footer-rights">All Rights Reserved</span>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('copy', function(e) {
+  var sel = window.getSelection().toString();
+  if (sel.length > 30) {
+    var notice = '\n\n© 2026 Gabriel Zhechev — gpsn0w.github.io/MiNator/\nAll Rights Reserved. Unauthorized copying is prohibited.';
+    e.clipboardData.setData('text/plain', sel + notice);
+    e.preventDefault();
+  }
+});
+
+function setLang(lang) {
+  document.body.className = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  localStorage.setItem('minator-lang', lang);
+}
+try {
+  var saved = localStorage.getItem('minator-lang');
+  if (saved === 'bg') setLang('bg');
+} catch(e) {}
+</script>
 
 </body>
 </html>

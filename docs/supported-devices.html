@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="en">
 
 <nav>
   <a class="nav-logo" href="index.html">MiNator</a>
@@ -16,6 +16,10 @@
     <a href="categories.html">Categories</a>
     <a href="faq.html">FAQ</a>
     <a href="https://github.com/gpsn0w/MiNator" target="_blank">GitHub ↗</a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('bg')">BG</button>
+    </div>
   </div>
 </nav>
 
@@ -23,14 +27,14 @@
 
   <aside class="sidebar">
     <div class="sidebar-section">
-      <div class="sidebar-title">Introduction</div>
-      <a href="getting-started.html">Getting Started</a>
-      <a href="categories.html">Categories</a>
+      <div class="sidebar-title"><span class="il en">Introduction</span><span class="il bg">Въведение</span></div>
+      <a href="getting-started.html"><span class="il en">Getting Started</span><span class="il bg">Как да започна</span></a>
+      <a href="categories.html"><span class="il en">Categories</span><span class="il bg">Категории</span></a>
     </div>
     <div class="sidebar-section">
-      <div class="sidebar-title">Reference</div>
+      <div class="sidebar-title"><span class="il en">Reference</span><span class="il bg">Справка</span></div>
       <a href="faq.html">FAQ</a>
-      <a href="supported-devices.html" class="active">Supported Devices</a>
+      <a href="supported-devices.html" class="active"><span class="il en">Supported Devices</span><span class="il bg">Устройства</span></a>
     </div>
     <div class="sidebar-section">
       <div class="sidebar-title">Links</div>
@@ -40,33 +44,98 @@
   </aside>
 
   <main class="content">
-    <h1>Supported Devices</h1>
-    <p>MiNator works on any Xiaomi / Redmi / POCO device running MIUI or HyperOS with ADB access. The table below lists confirmed tested devices.</p>
 
-    <div class="callout callout-info">
-      <strong>ℹ Note</strong>
-      <p>Tested your device? <a href="https://github.com/gpsn0w/MiNator/issues" target="_blank">Open an issue on GitHub ↗</a> with your results and we'll add it here.</p>
+    <div data-lang="en">
+      <h1>Supported Devices</h1>
+      <p>MiNator works on any Xiaomi / Redmi / POCO device running MIUI or HyperOS with ADB access. The table below lists confirmed tested devices.</p>
+
+      <div class="callout callout-info">
+        <strong>ℹ Note</strong>
+        <p>Tested your device? <a href="https://github.com/gpsn0w/MiNator/issues" target="_blank">Open an issue on GitHub ↗</a> with your results and we'll add it here.</p>
+      </div>
+
+      <table class="cat-table">
+        <tr>
+          <th>Device</th>
+          <th>OS</th>
+          <th>Version</th>
+          <th>Status</th>
+        </tr>
+        <tr>
+          <td>Xiaomi 14</td>
+          <td>HyperOS</td>
+          <td>3.0</td>
+          <td><span class="badge badge-safe">✓ Working</span></td>
+        </tr>
+      </table>
+
+      <p style="margin-top:24px">More devices coming as tested. MiNator is designed to work on all MIUI and HyperOS devices — most packages are consistent across the lineup.</p>
     </div>
 
-    <table class="cat-table">
-      <tr>
-        <th>Device</th>
-        <th>OS</th>
-        <th>Version</th>
-        <th>Status</th>
-      </tr>
-      <tr>
-        <td>Xiaomi 14</td>
-        <td>HyperOS</td>
-        <td>3.0</td>
-        <td><span class="badge badge-safe">✓ Working</span></td>
-      </tr>
-    </table>
+    <div data-lang="bg">
+      <h1>Поддържани устройства</h1>
+      <p>MiNator работи на всяко Xiaomi / Redmi / POCO устройство с MIUI или HyperOS и ADB достъп. Таблицата по-долу съдържа потвърдено тествани устройства.</p>
 
-    <p style="margin-top:24px">More devices coming as tested. MiNator is designed to work on all MIUI and HyperOS devices — most packages are consistent across the lineup.</p>
+      <div class="callout callout-info">
+        <strong>ℹ Забележка</strong>
+        <p>Тествал си устройството си? <a href="https://github.com/gpsn0w/MiNator/issues" target="_blank">Отвори issue в GitHub ↗</a> с резултатите и ще го добавим тук.</p>
+      </div>
+
+      <table class="cat-table">
+        <tr>
+          <th>Устройство</th>
+          <th>OS</th>
+          <th>Версия</th>
+          <th>Статус</th>
+        </tr>
+        <tr>
+          <td>Xiaomi 14</td>
+          <td>HyperOS</td>
+          <td>3.0</td>
+          <td><span class="badge badge-safe">✓ Работи</span></td>
+        </tr>
+      </table>
+
+      <p style="margin-top:24px">Повече устройства ще бъдат добавяни с тестването им. MiNator е проектиран да работи на всички MIUI и HyperOS устройства — повечето пакети са еднакви за цялата гама.</p>
+    </div>
 
   </main>
 </div>
+
+<footer class="site-footer">
+  <div class="footer-line">
+    <span class="footer-bracket">[</span>
+    <a href="https://gpsn0w.github.io/MiNator/" class="footer-brand">MiNator</a>
+    <span class="footer-bracket">]</span>
+    <span class="footer-sep">·</span>
+    <span class="footer-copy">© 2026</span>
+    <a href="https://github.com/gpsn0w" target="_blank" class="footer-author">Gabriel Zhechev</a>
+    <span class="footer-sep">·</span>
+    <span class="footer-rights">All Rights Reserved</span>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('copy', function(e) {
+  var sel = window.getSelection().toString();
+  if (sel.length > 30) {
+    var notice = '\n\n© 2026 Gabriel Zhechev — gpsn0w.github.io/MiNator/\nAll Rights Reserved. Unauthorized copying is prohibited.';
+    e.clipboardData.setData('text/plain', sel + notice);
+    e.preventDefault();
+  }
+});
+
+function setLang(lang) {
+  document.body.className = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  localStorage.setItem('minator-lang', lang);
+}
+try {
+  var saved = localStorage.getItem('minator-lang');
+  if (saved === 'bg') setLang('bg');
+} catch(e) {}
+</script>
 
 </body>
 </html>

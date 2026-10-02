@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="en">
 
 <nav>
   <a class="nav-logo" href="index.html">MiNator</a>
@@ -16,6 +16,10 @@
     <a href="categories.html">Categories</a>
     <a href="faq.html">FAQ</a>
     <a href="https://github.com/gpsn0w/MiNator" target="_blank">GitHub ↗</a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('bg')">BG</button>
+    </div>
   </div>
 </nav>
 
@@ -23,14 +27,14 @@
 
   <aside class="sidebar">
     <div class="sidebar-section">
-      <div class="sidebar-title">Introduction</div>
-      <a href="getting-started.html">Getting Started</a>
-      <a href="categories.html" class="active">Categories</a>
+      <div class="sidebar-title"><span class="il en">Introduction</span><span class="il bg">Въведение</span></div>
+      <a href="getting-started.html"><span class="il en">Getting Started</span><span class="il bg">Как да започна</span></a>
+      <a href="categories.html" class="active"><span class="il en">Categories</span><span class="il bg">Категории</span></a>
     </div>
     <div class="sidebar-section">
-      <div class="sidebar-title">Reference</div>
+      <div class="sidebar-title"><span class="il en">Reference</span><span class="il bg">Справка</span></div>
       <a href="faq.html">FAQ</a>
-      <a href="supported-devices.html">Supported Devices</a>
+      <a href="supported-devices.html"><span class="il en">Supported Devices</span><span class="il bg">Устройства</span></a>
     </div>
     <div class="sidebar-section">
       <div class="sidebar-title">Links</div>
@@ -40,87 +44,200 @@
   </aside>
 
   <main class="content">
-    <h1>Categories</h1>
-    <p>MiNator asks you about each category separately — you choose what to remove. Here's exactly what each one contains and why.</p>
 
-    <h2>1 — Ads &amp; Analytics <span class="badge badge-danger">Privacy Risk</span></h2>
-    <p>Spyware baked into the system. Tracks your usage and sends it to Xiaomi servers.</p>
-    <table class="cat-table">
-      <tr><th>Package</th><th>What it does</th></tr>
-      <tr><td>com.miui.analytics</td><td>Tracks everything you do and sends it to Xiaomi</td></tr>
-      <tr><td>com.miui.msa</td><td>Mi Service Framework — injects ads directly into the system</td></tr>
-      <tr><td>com.miui.systemAdSolution</td><td>Literally has "ads" in the name</td></tr>
-    </table>
+    <div data-lang="en">
+      <h1>Categories</h1>
+      <p>MiNator asks you about each category separately — you choose what to remove. Here's exactly what each one contains and why.</p>
 
-    <h2>2 — Facebook &amp; LinkedIn <span class="badge badge-danger">Privacy Risk</span></h2>
-    <p>Pre-installed social bloatware that runs in the background without your consent.</p>
-    <table class="cat-table">
-      <tr><th>Package</th><th>What it does</th></tr>
-      <tr><td>com.facebook.system</td><td>Spies on you even without Facebook installed</td></tr>
-      <tr><td>com.facebook.appmanager</td><td>Can install Facebook apps without asking you</td></tr>
-      <tr><td>com.facebook.services</td><td>Collects your data even without an account</td></tr>
-      <tr><td>com.linkedin.android</td><td>Pre-installed, nobody asked for it</td></tr>
-    </table>
+      <h2>1 — Ads &amp; Analytics <span class="badge badge-danger">Privacy Risk</span></h2>
+      <p>Spyware baked into the system. Tracks your usage and sends it to Xiaomi servers.</p>
+      <table class="cat-table">
+        <tr><th>Package</th><th>What it does</th></tr>
+        <tr><td>com.miui.analytics</td><td>Tracks everything you do and sends it to Xiaomi</td></tr>
+        <tr><td>com.miui.msa</td><td>Mi Service Framework — injects ads directly into the system</td></tr>
+        <tr><td>com.miui.systemAdSolution</td><td>Literally has "ads" in the name</td></tr>
+      </table>
 
-    <h2>3 — Mi Game Center <span class="badge badge-warn">Bloatware</span></h2>
-    <p>Useless if you don't play Xiaomi games. Takes up space and runs background services.</p>
-    <table class="cat-table">
-      <tr><th>Package</th><th>What it does</th></tr>
-      <tr><td>com.xiaomi.migameservice</td><td>Mi Game Service — Xiaomi's game store nobody uses</td></tr>
-      <tr><td>com.xiaomi.glgm</td><td>Mi Game Center — partner in crime of the above</td></tr>
-    </table>
+      <h2>2 — Facebook &amp; LinkedIn <span class="badge badge-danger">Privacy Risk</span></h2>
+      <p>Pre-installed social bloatware that runs in the background without your consent.</p>
+      <table class="cat-table">
+        <tr><th>Package</th><th>What it does</th></tr>
+        <tr><td>com.facebook.system</td><td>Spies on you even without Facebook installed</td></tr>
+        <tr><td>com.facebook.appmanager</td><td>Can install Facebook apps without asking you</td></tr>
+        <tr><td>com.facebook.services</td><td>Collects your data even without an account</td></tr>
+        <tr><td>com.linkedin.android</td><td>Pre-installed, nobody asked for it</td></tr>
+      </table>
 
-    <h2>4 — Mi Browser <span class="badge badge-danger">PRIVACY NIGHTMARE</span></h2>
-    <p>Every site you visit gets sent to Xiaomi. Yes, all of them. Yes, that one too.</p>
-    <table class="cat-table">
-      <tr><th>Package</th><th>What it does</th></tr>
-      <tr><td>com.mi.globalbrowser</td><td>PRIVACY NIGHTMARE — sends your entire browsing history to Xiaomi</td></tr>
-      <tr><td>com.mi.globalbrowser.mini</td><td>Same story, just smaller. Still spying on you.</td></tr>
-    </table>
+      <h2>3 — Mi Game Center <span class="badge badge-warn">Bloatware</span></h2>
+      <p>Useless if you don't play Xiaomi games. Takes up space and runs background services.</p>
+      <table class="cat-table">
+        <tr><th>Package</th><th>What it does</th></tr>
+        <tr><td>com.xiaomi.migameservice</td><td>Mi Game Service — Xiaomi's game store nobody uses</td></tr>
+        <tr><td>com.xiaomi.glgm</td><td>Mi Game Center — partner in crime of the above</td></tr>
+      </table>
 
-    <h2>5 — Mi Music &amp; Video <span class="badge badge-warn">Bloatware</span></h2>
-    <p>Ad-infested media players. Use Spotify and VLC instead.</p>
-    <table class="cat-table">
-      <tr><th>Package</th><th>What it does</th></tr>
-      <tr><td>com.miui.player</td><td>Mi Music — music player with built-in ads</td></tr>
-      <tr><td>com.miui.video</td><td>Mi Video — video player with built-in ads</td></tr>
-    </table>
+      <h2>4 — Mi Browser <span class="badge badge-danger">PRIVACY NIGHTMARE</span></h2>
+      <p>Every site you visit gets sent to Xiaomi. Yes, all of them. Yes, that one too.</p>
+      <table class="cat-table">
+        <tr><th>Package</th><th>What it does</th></tr>
+        <tr><td>com.mi.globalbrowser</td><td>PRIVACY NIGHTMARE — sends your entire browsing history to Xiaomi</td></tr>
+        <tr><td>com.mi.globalbrowser.mini</td><td>Same story, just smaller. Still spying on you.</td></tr>
+      </table>
 
-    <h2>6 — GetApps / Mi Store <span class="badge badge-warn">Bloatware</span></h2>
-    <p>Xiaomi's own app store — full of spam notifications and push ads.</p>
-    <table class="cat-table">
-      <tr><th>Package</th><th>Alt package</th><th>What it does</th></tr>
-      <tr><td>com.xiaomi.mipicks</td><td>com.miui.mipicks</td><td>GetApps — Xiaomi Play Store, spam notifications</td></tr>
-    </table>
+      <h2>5 — Mi Music &amp; Video <span class="badge badge-warn">Bloatware</span></h2>
+      <p>Ad-infested media players. Use Spotify and VLC instead.</p>
+      <table class="cat-table">
+        <tr><th>Package</th><th>What it does</th></tr>
+        <tr><td>com.miui.player</td><td>Mi Music — music player with built-in ads</td></tr>
+        <tr><td>com.miui.video</td><td>Mi Video — video player with built-in ads</td></tr>
+      </table>
 
-    <h2>7 — Safe System Bloat <span class="badge badge-safe">Safe to remove</span></h2>
-    <p>Bug reports and user tracking sent to Xiaomi. Safe to remove — does not affect core phone functions.</p>
-    <table class="cat-table">
-      <tr><th>Package</th><th>What it does</th></tr>
-      <tr><td>com.miui.bugreport</td><td>Auto-sends "bug reports" to Xiaomi without asking you</td></tr>
-      <tr><td>com.miui.feedback</td><td>Sends how you use your phone as "feedback"</td></tr>
-      <tr><td>com.miui.usertrack</td><td>Literally called "usertrack" — need we say more?</td></tr>
-    </table>
+      <h2>6 — GetApps / Mi Store <span class="badge badge-warn">Bloatware</span></h2>
+      <p>Xiaomi's own app store — full of spam notifications and push ads.</p>
+      <table class="cat-table">
+        <tr><th>Package</th><th>Alt package</th><th>What it does</th></tr>
+        <tr><td>com.xiaomi.mipicks</td><td>com.miui.mipicks</td><td>GetApps — Xiaomi Play Store, spam notifications</td></tr>
+      </table>
 
-    <h2>8 — Mi Cloud Backup <span class="badge badge-warn">Optional — double confirmation</span></h2>
+      <h2>7 — Safe System Bloat <span class="badge badge-safe">Safe to remove</span></h2>
+      <p>Bug reports and user tracking sent to Xiaomi. Safe to remove — does not affect core phone functions.</p>
+      <table class="cat-table">
+        <tr><th>Package</th><th>What it does</th></tr>
+        <tr><td>com.miui.bugreport</td><td>Auto-sends "bug reports" to Xiaomi without asking you</td></tr>
+        <tr><td>com.miui.feedback</td><td>Sends how you use your phone as "feedback"</td></tr>
+        <tr><td>com.miui.usertrack</td><td>Literally called "usertrack" — need we say more?</td></tr>
+      </table>
 
-    <div class="callout callout-danger">
-      <strong>⚠ Warning</strong>
-      <p>Mi Cloud is connected to <strong>Find My Device</strong>. Removing <code>com.miui.cloudbackup</code> may affect your ability to locate your phone remotely. MiNator asks twice before removing this one.</p>
+      <h2>8 — Mi Cloud Backup <span class="badge badge-warn">Optional — double confirmation</span></h2>
+      <div class="callout callout-danger">
+        <strong>⚠ Warning</strong>
+        <p>Mi Cloud is connected to <strong>Find My Device</strong>. Removing <code>com.miui.cloudbackup</code> may affect your ability to locate your phone remotely. MiNator asks twice before removing this one.</p>
+      </div>
+      <div class="callout callout-info">
+        <strong>ℹ Note</strong>
+        <p><code>com.miui.cloudservice</code> is intentionally NOT removed — it is required for Find My Device to work.</p>
+      </div>
+      <table class="cat-table">
+        <tr><th>Package</th><th>What it does</th></tr>
+        <tr><td>com.miui.cloudbackup</td><td>Backs up your data to Chinese servers</td></tr>
+      </table>
     </div>
 
-    <div class="callout callout-info">
-      <strong>ℹ Note</strong>
-      <p><code>com.miui.cloudservice</code> is intentionally NOT removed — it is required for Find My Device to work.</p>
-    </div>
+    <div data-lang="bg">
+      <h1>Категории</h1>
+      <p>MiNator те пита за всяка категория поотделно — ти избираш какво да се маха. Ето точно какво съдържа всяка и защо.</p>
 
-    <table class="cat-table">
-      <tr><th>Package</th><th>What it does</th></tr>
-      <tr><td>com.miui.cloudbackup</td><td>Backs up your data to Chinese servers</td></tr>
-    </table>
+      <h2>1 — Реклами &amp; Аналитика <span class="badge badge-danger">Privacy Risk</span></h2>
+      <p>Шпионски софтуер вграден в системата. Следи употребата ти и я праща към Xiaomi сървъри.</p>
+      <table class="cat-table">
+        <tr><th>Пакет</th><th>Какво прави</th></tr>
+        <tr><td>com.miui.analytics</td><td>Следи всичко, което правиш, и го праща към Xiaomi</td></tr>
+        <tr><td>com.miui.msa</td><td>Mi Service Framework — инжектира реклами директно в системата</td></tr>
+        <tr><td>com.miui.systemAdSolution</td><td>Буквално има "ads" в името</td></tr>
+      </table>
+
+      <h2>2 — Facebook &amp; LinkedIn <span class="badge badge-danger">Privacy Risk</span></h2>
+      <p>Предварително инсталиран социален bloatware, работещ на заден план без твое съгласие.</p>
+      <table class="cat-table">
+        <tr><th>Пакет</th><th>Какво прави</th></tr>
+        <tr><td>com.facebook.system</td><td>Шпионира те дори без инсталиран Facebook</td></tr>
+        <tr><td>com.facebook.appmanager</td><td>Може да инсталира Facebook приложения без да те пита</td></tr>
+        <tr><td>com.facebook.services</td><td>Събира данните ти дори без акаунт</td></tr>
+        <tr><td>com.linkedin.android</td><td>Предварително инсталиран, никой не го е искал</td></tr>
+      </table>
+
+      <h2>3 — Mi Game Center <span class="badge badge-warn">Bloatware</span></h2>
+      <p>Безполезен ако не играеш Xiaomi игри. Заема място и пуска фонови услуги.</p>
+      <table class="cat-table">
+        <tr><th>Пакет</th><th>Какво прави</th></tr>
+        <tr><td>com.xiaomi.migameservice</td><td>Mi Game Service — Xiaomi магазин за игри, когото никой не ползва</td></tr>
+        <tr><td>com.xiaomi.glgm</td><td>Mi Game Center — съучастник на горното</td></tr>
+      </table>
+
+      <h2>4 — Mi Browser <span class="badge badge-danger">PRIVACY NIGHTMARE</span></h2>
+      <p>Всеки сайт, който посещаваш, се праща към Xiaomi. Да, всички. Да, и този.</p>
+      <table class="cat-table">
+        <tr><th>Пакет</th><th>Какво прави</th></tr>
+        <tr><td>com.mi.globalbrowser</td><td>PRIVACY NIGHTMARE — праща цялата ти история към Xiaomi</td></tr>
+        <tr><td>com.mi.globalbrowser.mini</td><td>Същото, само по-малко. Пак те шпионира.</td></tr>
+      </table>
+
+      <h2>5 — Mi Music &amp; Video <span class="badge badge-warn">Bloatware</span></h2>
+      <p>Медийни плейъри с вградени реклами. Ползвай Spotify и VLC вместо тях.</p>
+      <table class="cat-table">
+        <tr><th>Пакет</th><th>Какво прави</th></tr>
+        <tr><td>com.miui.player</td><td>Mi Music — музикален плейър с вградени реклами</td></tr>
+        <tr><td>com.miui.video</td><td>Mi Video — видео плейър с вградени реклами</td></tr>
+      </table>
+
+      <h2>6 — GetApps / Mi Store <span class="badge badge-warn">Bloatware</span></h2>
+      <p>Собственият магазин на Xiaomi — пълен со spam нотификации и push реклами.</p>
+      <table class="cat-table">
+        <tr><th>Пакет</th><th>Алт. пакет</th><th>Какво прави</th></tr>
+        <tr><td>com.xiaomi.mipicks</td><td>com.miui.mipicks</td><td>GetApps — Xiaomi Play Store, spam нотификации</td></tr>
+      </table>
+
+      <h2>7 — Безопасен системен bloat <span class="badge badge-safe">Безопасно за махане</span></h2>
+      <p>Bug репорти и проследяване на потребителя към Xiaomi. Безопасно за махане — не засяга основните функции на телефона.</p>
+      <table class="cat-table">
+        <tr><th>Пакет</th><th>Какво прави</th></tr>
+        <tr><td>com.miui.bugreport</td><td>Автоматично праща "bug репорти" към Xiaomi без да те пита</td></tr>
+        <tr><td>com.miui.feedback</td><td>Праща начина ти на ползване като "обратна връзка"</td></tr>
+        <tr><td>com.miui.usertrack</td><td>Буквално се казва "usertrack" — трябва ли повече да обясняваме?</td></tr>
+      </table>
+
+      <h2>8 — Mi Cloud Backup <span class="badge badge-warn">По избор — двойно потвърждение</span></h2>
+      <div class="callout callout-danger">
+        <strong>⚠ Внимание</strong>
+        <p>Mi Cloud е свързан с <strong>Find My Device</strong>. Махането на <code>com.miui.cloudbackup</code> може да засегне възможността за дистанционно намиране на телефона. MiNator пита два пъти преди да маха това.</p>
+      </div>
+      <div class="callout callout-info">
+        <strong>ℹ Забележка</strong>
+        <p><code>com.miui.cloudservice</code> умишлено НЕ се маха — нужен е за работата на Find My Device.</p>
+      </div>
+      <table class="cat-table">
+        <tr><th>Пакет</th><th>Какво прави</th></tr>
+        <tr><td>com.miui.cloudbackup</td><td>Прави backup на данните ти към китайски сървъри</td></tr>
+      </table>
+    </div>
 
   </main>
 </div>
+
+<footer class="site-footer">
+  <div class="footer-line">
+    <span class="footer-bracket">[</span>
+    <a href="https://gpsn0w.github.io/MiNator/" class="footer-brand">MiNator</a>
+    <span class="footer-bracket">]</span>
+    <span class="footer-sep">·</span>
+    <span class="footer-copy">© 2026</span>
+    <a href="https://github.com/gpsn0w" target="_blank" class="footer-author">Gabriel Zhechev</a>
+    <span class="footer-sep">·</span>
+    <span class="footer-rights">All Rights Reserved</span>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('copy', function(e) {
+  var sel = window.getSelection().toString();
+  if (sel.length > 30) {
+    var notice = '\n\n© 2026 Gabriel Zhechev — gpsn0w.github.io/MiNator/\nAll Rights Reserved. Unauthorized copying is prohibited.';
+    e.clipboardData.setData('text/plain', sel + notice);
+    e.preventDefault();
+  }
+});
+
+function setLang(lang) {
+  document.body.className = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  localStorage.setItem('minator-lang', lang);
+}
+try {
+  var saved = localStorage.getItem('minator-lang');
+  if (saved === 'bg') setLang('bg');
+} catch(e) {}
+</script>
 
 </body>
 </html>
