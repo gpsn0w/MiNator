@@ -1,5 +1,10 @@
 # MiNator v1.0 - Xiaomi Bloat Eliminator
 
+[![Website](https://img.shields.io/badge/Website-gpsn0w.github.io%2FMiNator-4ade80?style=flat-square&logo=github)](https://gpsn0w.github.io/MiNator/)
+[![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red?style=flat-square)](LICENSE)
+
+> **🌐 [gpsn0w.github.io/MiNator](https://gpsn0w.github.io/MiNator/) — Documentation & Getting Started**
+
 ```
  __  __ _ _   _       _            
 |  \/  (_) \ | | __ _| |_ ___  _ __
