@@ -11,6 +11,8 @@
 # ================================================================
 
 LANG_BG=false
+COUNT_REMOVED=0
+COUNT_SKIPPED=0
 
 show_banner() {
     clear
@@ -131,17 +133,21 @@ remove_pkg() {
 
     if echo "$result" | grep -q "Success"; then
         echo "✓ $(t 'Removed!' 'Премахнат!')"
+        COUNT_REMOVED=$((COUNT_REMOVED + 1))
     elif [ -n "$alt" ]; then
         t 'not found, trying alt...' 'не е намерен, опитвам алтернатива...'
         printf "     "
         result2=$(adb -s "$DEVICE_SERIAL" shell pm uninstall -k --user 0 "$alt" 2>&1)
         if echo "$result2" | grep -q "Success"; then
             echo "✓ $(t 'Removed!' 'Премахнат!')"
+            COUNT_REMOVED=$((COUNT_REMOVED + 1))
         else
-            echo "✓ $(t 'Already removed before, or not on this device 😊' 'Вече е махнат от преди, или не е на това устройство 😊')"
+            echo "✓ $(t 'Already removed before, or not on this device' 'Вече е махнат от преди, или не е на това устройство')"
+            COUNT_SKIPPED=$((COUNT_SKIPPED + 1))
         fi
     else
-        echo "✓ $(t 'Already removed before, or not on this device 😊' 'Вече е махнат от преди, или не е на това устройство 😊')"
+        echo "✓ $(t 'Already removed before, or not on this device' 'Вече е махнат от преди, или не е на това устройство')"
+        COUNT_SKIPPED=$((COUNT_SKIPPED + 1))
     fi
     echo ""
 }
@@ -345,4 +351,7 @@ echo ""
 # ================================================================
 echo "================================================"
 t '[+] MiNator done! Please RESTART your phone.' '[+] MiNator приключи! Моля РЕСТАРТИРАЙ телефона.'
+echo "------------------------------------------------"
+t "    Removed : $COUNT_REMOVED package(s)" "    Махнати : $COUNT_REMOVED пакета"
+t "    Skipped : $COUNT_SKIPPED (already gone or not on device)" "    Пропуснати : $COUNT_SKIPPED (вече махнати или не са на устройството)"
 echo "================================================"

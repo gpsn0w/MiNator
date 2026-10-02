@@ -3,6 +3,8 @@
 
 chcp 65001 | Out-Null
 $LANG_BG = $false
+$COUNT_REMOVED = 0
+$COUNT_SKIPPED = 0
 
 function Show-Banner {
     Clear-Host
@@ -45,16 +47,20 @@ function Remove-Pkg {
     $result = & adb -s $DEVICE shell pm uninstall -k --user 0 $pkg 2>&1
     if ($result -match "Success") {
         Write-Host "     v $msgRemoved" -ForegroundColor Green
+        $script:COUNT_REMOVED++
     } elseif ($alt) {
         Write-Host "     $msgAlt" -ForegroundColor Yellow
         $result2 = & adb -s $DEVICE shell pm uninstall -k --user 0 $alt 2>&1
         if ($result2 -match "Success") {
             Write-Host "     v $msgRemoved" -ForegroundColor Green
+            $script:COUNT_REMOVED++
         } else {
             Write-Host "     v $msgSkipped" -ForegroundColor DarkGreen
+            $script:COUNT_SKIPPED++
         }
     } else {
         Write-Host "     v $msgSkipped" -ForegroundColor DarkGreen
+        $script:COUNT_SKIPPED++
     }
     Write-Host ""
 }
@@ -258,4 +264,7 @@ Write-Host ""
 # ================================================================
 Write-Host "================================================"
 Write-Host (T '[+] MiNator done! Please RESTART your phone.' '[+] MiNator приключи! Моля РЕСТАРТИРАЙ телефона.') -ForegroundColor Green
+Write-Host "------------------------------------------------"
+Write-Host (T "    Removed : $COUNT_REMOVED package(s)" "    Махнати : $COUNT_REMOVED пакета") -ForegroundColor Green
+Write-Host (T "    Skipped : $COUNT_SKIPPED (already gone or not on device)" "    Пропуснати : $COUNT_SKIPPED (вече махнати или не са на устройството)") -ForegroundColor DarkGray
 Write-Host "================================================"

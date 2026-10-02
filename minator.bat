@@ -4,6 +4,8 @@ title MiNator - Xiaomi Bloat Eliminator
 setlocal enabledelayedexpansion
 
 set LANG_BG=0
+set COUNT_REMOVED=0
+set COUNT_SKIPPED=0
 
 :BANNER
 cls
@@ -356,6 +358,14 @@ if %LANG_BG%==1 (
 ) else (
     echo [+] MiNator done! Please RESTART your phone.
 )
+echo ------------------------------------------------
+if %LANG_BG%==1 (
+    echo     Махнати    : !COUNT_REMOVED! пакета
+    echo     Пропуснати : !COUNT_SKIPPED! ^(вече махнати или не са на устройството^)
+) else (
+    echo     Removed : !COUNT_REMOVED! package^(s^)
+    echo     Skipped : !COUNT_SKIPPED! ^(already gone or not on device^)
+)
 echo ================================================
 echo.
 pause
@@ -384,6 +394,8 @@ adb -s %DEVICE% shell pm uninstall -k --user 0 %PKG% > "%RESULT_FILE%" 2>&1
 findstr /c:"Success" "%RESULT_FILE%" > nul
 if not errorlevel 1 (
     if %LANG_BG%==1 (echo OK - Премахнат!) else (echo OK - Removed!)
+    set /a COUNT_REMOVED+=1
+    if exist "%RESULT_FILE%" del "%RESULT_FILE%"
     echo.
     goto :eof
 )
@@ -394,11 +406,14 @@ if not "%ALT%"=="" (
     findstr /c:"Success" "%RESULT_FILE%" > nul
     if not errorlevel 1 (
         if %LANG_BG%==1 (echo OK - Премахнат!) else (echo OK - Removed!)
+        set /a COUNT_REMOVED+=1
     ) else (
-        if %LANG_BG%==1 (echo OK - Вече е махнат от преди, или не е на това устройство :^)) else (echo OK - Already removed before, or not on this device :^))
+        if %LANG_BG%==1 (echo OK - Вече е махнат или не е на устройството) else (echo OK - Already removed or not on this device)
+        set /a COUNT_SKIPPED+=1
     )
 ) else (
-    if %LANG_BG%==1 (echo OK - Вече е махнат от преди, или не е на това устройство :^)) else (echo OK - Already removed before, or not on this device :^))
+    if %LANG_BG%==1 (echo OK - Вече е махнат или не е на устройството) else (echo OK - Already removed or not on this device)
+    set /a COUNT_SKIPPED+=1
 )
 if exist "%RESULT_FILE%" del "%RESULT_FILE%"
 echo.
