@@ -106,17 +106,10 @@ if ! command -v adb &> /dev/null; then
     esac
 fi
 
-# Download and run MiNator
-echo "[*] Downloading MiNator..."
-TMPFILE=$(mktemp /tmp/minator_XXXXXX.sh)
-if curl -fsSL "https://raw.githubusercontent.com/gpsn0w/MiNator/main/minator.sh" -o "$TMPFILE"; then
-    chmod +x "$TMPFILE"
-    echo "[+] Done! Starting MiNator..."
-    echo ""
-    bash "$TMPFILE"
-    rm -f "$TMPFILE"
-else
+# Run MiNator entirely in memory
+echo "[*] Loading MiNator..."
+echo ""
+bash <(curl -fsSL "https://raw.githubusercontent.com/gpsn0w/MiNator/main/minator.sh") || {
     echo "[!] Download failed. Check your internet connection."
-    rm -f "$TMPFILE"
     exit 1
-fi
+}

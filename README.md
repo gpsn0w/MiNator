@@ -83,7 +83,7 @@ MiNator маха предварително инсталирания bloatware �
 
 **Mac / Linux:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.sh | bash
+bash <(curl -fsSL https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.sh)
 ```
 
 **Windows (PowerShell):**
@@ -91,7 +91,7 @@ curl -fsSL https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.sh | ba
 irm https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.ps1 | iex
 ```
 
-> Automatically checks if ADB is installed — if not, offers to install it for you.
+> Nothing is saved to disk. Automatically checks if ADB is installed — if not, offers to install it for you.
 
 ---
 
