@@ -27,7 +27,8 @@ function T {
 function Ask-YN {
     param($question)
     $answer = Read-Host "$question [y/N]"
-    return $answer -match '^[yYдД]'
+    $a = $answer.ToLower().Trim()
+    return ($a -eq 'y' -or $a -eq 'yes' -or $a -eq 'd' -or $a -eq 'da')
 }
 
 function Remove-Pkg {
@@ -37,19 +38,23 @@ function Remove-Pkg {
     else { Write-Host "  -> $pkg" -ForegroundColor White }
     Write-Host "     $desc" -ForegroundColor Gray
 
+    $msgRemoved   = T 'Removed!' 'Премахнат!'
+    $msgAlt       = T 'not found, trying alt...' 'не е намерен, опитвам алтернатива...'
+    $msgSkipped   = T 'Already removed before, or not on this device' 'Вече е махнат от преди, или не е на това устройство'
+
     $result = & adb -s $DEVICE shell pm uninstall -k --user 0 $pkg 2>&1
     if ($result -match "Success") {
-        Write-Host "     v $(T 'Removed!' 'Премахнат!')" -ForegroundColor Green
+        Write-Host "     v $msgRemoved" -ForegroundColor Green
     } elseif ($alt) {
-        Write-Host "     $(T 'not found, trying alt...' 'не е намерен, опитвам алтернатива...')" -ForegroundColor Yellow
+        Write-Host "     $msgAlt" -ForegroundColor Yellow
         $result2 = & adb -s $DEVICE shell pm uninstall -k --user 0 $alt 2>&1
         if ($result2 -match "Success") {
-            Write-Host "     v $(T 'Removed!' 'Премахнат!')" -ForegroundColor Green
+            Write-Host "     v $msgRemoved" -ForegroundColor Green
         } else {
-            Write-Host "     v $(T 'Already removed before, or not on this device :)' 'Вече е махнат от преди, или не е на това устройство :)')" -ForegroundColor DarkGreen
+            Write-Host "     v $msgSkipped" -ForegroundColor DarkGreen
         }
     } else {
-        Write-Host "     v $(T 'Already removed before, or not on this device :)' 'Вече е махнат от преди, или не е на това устройство :)')" -ForegroundColor DarkGreen
+        Write-Host "     v $msgSkipped" -ForegroundColor DarkGreen
     }
     Write-Host ""
 }
