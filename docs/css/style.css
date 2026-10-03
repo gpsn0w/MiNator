@@ -441,10 +441,49 @@ body.bg .il.bg { display: inline; }
 .footer-author:hover { color: var(--accent); text-decoration: none; }
 .footer-rights { color: #2a2a2a; font-size: 11px; }
 
-/* ── RESPONSIVE ── */
+/* ── HAMBURGER ── */
+.hamburger {
+  display: none;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 5px;
+  margin-left: auto;
+  font-family: var(--font-mono);
+  line-height: 1;
+}
+.hamburger:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── TABLET ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root { --sidebar-width: 190px; }
+  .content { padding: 36px 36px; }
+}
+
+/* ── MOBILE ── */
 @media (max-width: 768px) {
-  .hero-ascii { font-size: 8px; }
+  .hamburger { display: block; }
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 56px; left: 0; right: 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 20px;
+    gap: 14px;
+    z-index: 99;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { font-size: 15px; }
+  .lang-toggle { margin-left: 0; margin-top: 4px; }
   .sidebar { display: none; }
   .content { margin-left: 0; padding: 24px 16px; }
-  .nav-links { display: none; }
+  .cat-table { font-size: 12px; }
+  .cat-table td, .cat-table th { padding: 8px 10px; }
+  .hero-ascii { font-size: 8px; }
 }

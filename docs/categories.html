@@ -21,6 +21,7 @@
       <button class="lang-btn" onclick="setLang('bg')">BG</button>
     </div>
   </div>
+  <button class="hamburger" onclick="toggleMenu()">☰</button>
 </nav>
 
 <div class="docs-layout">
@@ -227,6 +228,9 @@ document.addEventListener('copy', function(e) {
   }
 });
 
+function toggleMenu() {
+  document.querySelector('.nav-links').classList.toggle('open');
+}
 function setLang(lang) {
   document.body.className = lang;
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
