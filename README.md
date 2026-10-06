@@ -17,7 +17,8 @@
           Keep Privacy First
 ```
 
-**Tested on: Xiaomi 14 — HyperOS 3.0** ✓
+**Tested on: Xiaomi 14 — HyperOS 3.0** ✓  
+**Tested on: Xiaomi Redmi 14C — HyperOS 2.0** ✓ (runs very smoothly)
 
 ---
 
@@ -120,6 +121,7 @@ minator.bat
 | Device | OS | Status |
 |--------|----|--------|
 | Xiaomi 14 | HyperOS 3.0 | ✅ Working |
+| Xiaomi Redmi 14C | HyperOS 2.0 | ✅ Working — runs very smoothly |
 
 *More devices coming as tested. Feel free to open an issue with your device results!*
 

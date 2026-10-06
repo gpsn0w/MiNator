@@ -482,8 +482,19 @@ body.bg .il.bg { display: inline; }
   .nav-links a { font-size: 15px; }
   .lang-toggle { margin-left: 0; margin-top: 4px; }
   .sidebar { display: none; }
-  .content { margin-left: 0; padding: 24px 16px; }
-  .cat-table { font-size: 12px; }
-  .cat-table td, .cat-table th { padding: 8px 10px; }
+  .content { margin-left: 0; padding: 24px 16px; max-width: 100%; overflow-x: hidden; }
+  /* Fix table overflow */
+  .cat-table { font-size: 11px; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .cat-table td, .cat-table th { padding: 7px 8px; white-space: nowrap; }
+  /* Fix code block overflow */
+  .code-block { padding: 14px 12px; }
+  .code-block code { white-space: pre-wrap; word-break: break-all; font-size: 11px; }
+  /* Fix callout */
+  .callout { padding: 12px 14px; font-size: 13px; }
+  .callout code { word-break: break-all; }
+  /* Fix step layout */
+  .step { flex-direction: column; gap: 10px; }
   .hero-ascii { font-size: 8px; }
+  h1 { font-size: 22px !important; }
+  h2 { font-size: 17px !important; }
 }
