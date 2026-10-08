@@ -87,12 +87,16 @@ if (-not (Get-Command adb -ErrorAction SilentlyContinue)) {
     }
 }
 
-# Download minator.ps1 to temp and run with & (avoids iex/AMSI issues)
+# Download minator.ps1 to temp and run
+# Set execution policy for this process only so the downloaded script can run
 Write-Host "[*] Loading MiNator..." -ForegroundColor Cyan
 $tmpMinator = "$env:TEMP\minator_$(Get-Random).ps1"
 try {
     Invoke-WebRequest -Uri "https://raw.githubusercontent.com/gpsn0w/MiNator/main/minator.ps1" -OutFile $tmpMinator -UseBasicParsing
+    $currentPolicy = Get-ExecutionPolicy -Scope Process
+    Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force
     & $tmpMinator
+    Set-ExecutionPolicy -Scope Process -ExecutionPolicy $currentPolicy -Force
 } finally {
     if (Test-Path $tmpMinator) { Remove-Item $tmpMinator -Force }
 }
