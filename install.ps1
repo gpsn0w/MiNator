@@ -1,6 +1,12 @@
 # MiNator - One-line installer for Windows PowerShell
 # irm https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.ps1 | iex
 
+# Auto self-elevate — if not admin, relaunch with UAC prompt
+if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]"Administrator")) {
+    Start-Process PowerShell -Verb RunAs -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command `"irm https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.ps1 | iex`""
+    exit
+}
+
 chcp 65001 | Out-Null
 Clear-Host
 
