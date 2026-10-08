@@ -19,7 +19,7 @@
 
 **Tested on: Xiaomi 14 — HyperOS 3.0** ✓  
 **Tested on: Xiaomi Redmi 14C — HyperOS 2.0** ✓ (runs very smoothly)  
-**Tested on: Xiaomi Redmi Pad 2 — HyperOS 2.0** ✓
+**Tested on: Xiaomi Redmi Pad 2 — HyperOS 3.0** ✓
 
 ---
 
@@ -123,7 +123,7 @@ minator.bat
 |--------|----|--------|
 | Xiaomi 14 | HyperOS 3.0 | ✅ Working |
 | Xiaomi Redmi 14C | HyperOS 2.0 | ✅ Working — runs very smoothly |
-| Xiaomi Redmi Pad 2 | HyperOS 2.0 | ✅ Working |
+| Xiaomi Redmi Pad 2 | HyperOS 3.0 | ✅ Working |
 
 *More devices coming as tested. Feel free to open an issue with your device results!*
 
