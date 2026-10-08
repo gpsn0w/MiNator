@@ -484,8 +484,9 @@ body.bg .il.bg { display: inline; }
   .sidebar { display: none; }
   .content { margin-left: 0; padding: 24px 16px; max-width: 100%; overflow-x: hidden; }
   /* Fix table overflow */
-  .cat-table { font-size: 11px; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .cat-table td, .cat-table th { padding: 7px 8px; white-space: nowrap; }
+  .cat-table { font-size: 11px; width: 100%; }
+  .cat-table td, .cat-table th { padding: 7px 8px; white-space: normal; word-break: break-word; }
+  .cat-table td:first-child { word-break: break-all; font-size: 10px; }
   /* Fix code block overflow */
   .code-block { padding: 14px 12px; }
   .code-block code { white-space: pre-wrap; word-break: break-all; font-size: 11px; }
