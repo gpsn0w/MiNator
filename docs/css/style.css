@@ -492,7 +492,7 @@ body.bg .il.bg { display: inline; }
   .device-table thead { display: none; }
   .device-table tbody, .device-table tr { display: block; }
   .device-table tr { border: 1px solid var(--border); border-radius: 6px; margin-bottom: 10px; padding: 10px 14px; }
-  .device-table td { display: flex; align-items: flex-start; gap: 8px; border: none; padding: 3px 0; font-size: 13px; }
+  .device-table td { display: flex; align-items: flex-start; gap: 8px; border: none; padding: 3px 0; font-size: 13px; width: auto !important; word-break: normal !important; }
   .device-table td::before { content: attr(data-label); font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; min-width: 56px; padding-top: 2px; flex-shrink: 0; }
   /* Fix code block overflow */
   .code-block { padding: 14px 12px; }
