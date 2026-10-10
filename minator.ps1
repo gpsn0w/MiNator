@@ -121,6 +121,7 @@ Write-Host ""
 if (-not (Ask-YN (T 'Did you read the instructions and is your phone ready?' 'Прочете ли инструкциите и готов ли е телефонът?'))) {
     Write-Host ""
     Write-Host (T 'Please set up ADB first, then run MiNator again.' 'Настрой ADB първо, след това пусни MiNator отново.') -ForegroundColor Yellow
+    Read-Host (T "Press Enter to close" "Натисни Enter за изход")
     exit 0
 }
 Write-Host ""
@@ -131,6 +132,7 @@ if (-not (Get-Command adb -ErrorAction SilentlyContinue)) {
     Write-Host (T '[!] ADB not found! Install it:' '[!] ADB не е намерен! Инсталирай го:') -ForegroundColor Red
     Write-Host "    winget install Google.PlatformTools"
     Write-Host "    or: https://developer.android.com/tools/releases/platform-tools"
+    Read-Host (T "Press Enter to close" "Натисни Enter за изход")
     exit 1
 }
 Write-Host (T '[+] ADB found!' '[+] ADB намерен!') -ForegroundColor Green
@@ -154,12 +156,14 @@ foreach ($line in ($adbDevices | Select-Object -Skip 1)) {
 if (-not $DEVICE -and $UNAUTH) {
     Write-Host (T '[!] Device found but NOT authorized!' '[!] Устройство намерено но НЕ Е оторизирано!') -ForegroundColor Red
     Write-Host (T '    Please tap [Allow] on your phone and try again.' '    Моля натисни [Allow] на телефона и опитай отново.') -ForegroundColor Yellow
+    Read-Host (T "Press Enter to close" "Натисни Enter за изход")
     exit 1
 }
 
 if (-not $DEVICE) {
     Write-Host (T '[!] No device found!' '[!] Няма свързано устройство!') -ForegroundColor Red
     Write-Host (T '    Connect via USB or Wireless ADB and try again.' '    Свържи се чрез USB или Wireless ADB и опитай отново.') -ForegroundColor Yellow
+    Read-Host (T "Press Enter to close" "Натисни Enter за изход")
     exit 1
 }
 
@@ -268,3 +272,5 @@ Write-Host "------------------------------------------------"
 Write-Host (T "    Removed : $COUNT_REMOVED package(s)" "    Махнати : $COUNT_REMOVED пакета") -ForegroundColor Green
 Write-Host (T "    Skipped : $COUNT_SKIPPED (already gone or not on device)" "    Пропуснати : $COUNT_SKIPPED (вече махнати или не са на устройството)") -ForegroundColor DarkGray
 Write-Host "================================================"
+Write-Host ""
+Read-Host (T "Press Enter to close" "Натисни Enter за изход")
