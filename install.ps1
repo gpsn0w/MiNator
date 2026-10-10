@@ -98,7 +98,9 @@ if (-not (Get-Command adb -ErrorAction SilentlyContinue)) {
 Write-Host "[*] Loading MiNator..." -ForegroundColor Cyan
 $tmpMinator = "$env:TEMP\minator_$(Get-Random).ps1"
 try {
-    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/gpsn0w/MiNator/main/minator.ps1" -OutFile $tmpMinator -UseBasicParsing
+    $response = Invoke-WebRequest -Uri "https://raw.githubusercontent.com/gpsn0w/MiNator/main/minator.ps1" -UseBasicParsing
+    $utf8Bom = New-Object System.Text.UTF8Encoding $true
+    [System.IO.File]::WriteAllText($tmpMinator, $response.Content, $utf8Bom)
     $currentPolicy = Get-ExecutionPolicy -Scope Process
     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force
     & $tmpMinator
