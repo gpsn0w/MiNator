@@ -1,4 +1,6 @@
 @echo off
+rem (c) 2026 Gabriel Zhechev - gpsn0w.github.io/MiNator/
+rem All Rights Reserved. Unauthorized copying is prohibited.
 chcp 65001 > nul
 title MiNator - Xiaomi Bloat Eliminator
 setlocal enabledelayedexpansion

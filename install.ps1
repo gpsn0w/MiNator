@@ -1,5 +1,8 @@
 # MiNator - One-line installer for Windows PowerShell
 # irm https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.ps1 | iex
+#
+# (c) 2026 Gabriel Zhechev - gpsn0w.github.io/MiNator/
+# All Rights Reserved. Unauthorized copying is prohibited.
 
 # Auto self-elevate — if not admin, relaunch with UAC prompt
 if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]"Administrator")) {

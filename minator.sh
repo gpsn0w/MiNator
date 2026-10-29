@@ -9,6 +9,9 @@
 #       [ Xiaomi Bloat Eliminator ]
 #        Made by gpsn0w & Claude
 # ================================================================
+# (c) 2026 Gabriel Zhechev - gpsn0w.github.io/MiNator/
+# All Rights Reserved. Unauthorized copying is prohibited.
+# ================================================================
 
 LANG_BG=false
 COUNT_REMOVED=0

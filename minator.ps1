@@ -1,5 +1,8 @@
 # MiNator - Xiaomi Bloat Eliminator (PowerShell)
 # irm https://raw.githubusercontent.com/gpsn0w/MiNator/main/minator.ps1 | iex
+#
+# (c) 2026 Gabriel Zhechev - gpsn0w.github.io/MiNator/
+# All Rights Reserved. Unauthorized copying is prohibited.
 
 chcp 65001 | Out-Null
 try { [Console]::OutputEncoding = [System.Text.Encoding]::UTF8 } catch {}

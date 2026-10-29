@@ -1,6 +1,9 @@
 #!/bin/bash
 # MiNator - One-line installer for Mac/Linux
 # bash <(curl -fsSL https://raw.githubusercontent.com/gpsn0w/MiNator/main/install.sh)
+#
+# (c) 2026 Gabriel Zhechev - gpsn0w.github.io/MiNator/
+# All Rights Reserved. Unauthorized copying is prohibited.
 
 clear
 echo " __  __ _ _   _       _            "
