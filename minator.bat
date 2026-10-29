@@ -389,7 +389,7 @@ if %LANG_BG%==1 (
 ) else (
     echo      %DESC_EN%
 )
-<nul set /p "     "
+<nul set /p "=     "
 adb -s %DEVICE% shell pm uninstall -k --user 0 %PKG% > "%RESULT_FILE%" 2>&1
 findstr /c:"Success" "%RESULT_FILE%" > nul
 if not errorlevel 1 (
@@ -401,7 +401,7 @@ if not errorlevel 1 (
 )
 if not "%ALT%"=="" (
     if %LANG_BG%==1 (echo не е намерен, опитвам алтернатива...) else (echo not found, trying alt...)
-    <nul set /p "     "
+    <nul set /p "=     "
     adb -s %DEVICE% shell pm uninstall -k --user 0 %ALT% > "%RESULT_FILE%" 2>&1
     findstr /c:"Success" "%RESULT_FILE%" > nul
     if not errorlevel 1 (
