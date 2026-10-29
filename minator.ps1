@@ -2,6 +2,7 @@
 # irm https://raw.githubusercontent.com/gpsn0w/MiNator/main/minator.ps1 | iex
 
 chcp 65001 | Out-Null
+try { [Console]::OutputEncoding = [System.Text.Encoding]::UTF8 } catch {}
 $LANG_BG = $false
 $COUNT_REMOVED = 0
 $COUNT_SKIPPED = 0

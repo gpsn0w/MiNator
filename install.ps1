@@ -105,6 +105,11 @@ try {
     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force
     & $tmpMinator
     Set-ExecutionPolicy -Scope Process -ExecutionPolicy $currentPolicy -Force
+} catch {
+    Write-Host ""
+    Write-Host "[!] Failed to load MiNator: $($_.Exception.Message)" -ForegroundColor Red
+    Write-Host "    Check your internet connection and try again." -ForegroundColor Yellow
+    Read-Host "Press Enter to close"
 } finally {
     if (Test-Path $tmpMinator) { Remove-Item $tmpMinator -Force }
 }
